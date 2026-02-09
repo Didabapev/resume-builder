@@ -64,7 +64,8 @@ footer{text-align:center;font-size:13px;color:#9ca3af;padding:30px}
 /* ===== ATS FRIENDLY PDF ===== */
 #result{
   font-family:Arial,Helvetica,sans-serif;
-  color:#000
+  color:#000;
+  background:#fff;
 }
 #result h2{
   font-size:22px;
@@ -75,8 +76,7 @@ footer{text-align:center;font-size:13px;color:#9ca3af;padding:30px}
 #result h4{
   font-size:14px;
   font-weight:normal;
-  margin-bottom:12px;
-  color:#000
+  margin-bottom:12px
 }
 #result h3{
   font-size:16px;
@@ -143,84 +143,73 @@ footer{text-align:center;font-size:13px;color:#9ca3af;padding:30px}
 <footer>
 <p>© 2026 Resume Builder · Free Online Resume Generator</p>
 <p>This website does not collect or store personal data.</p>
-<a href="what-is-resume-builder.html">What is a Resume Builder?</a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-const skillsMap = {
-  "Frontend Developer":"HTML, CSS, JavaScript, React, Responsive Design",
-  "Backend Developer":"Node.js, APIs, Databases, Security",
-  "Full Stack Developer":"Frontend, Backend, Databases, APIs",
-  "Software Engineer":"Software Design, Algorithms, Debugging",
-  "Data Analyst":"SQL, Excel, Python, Data Visualization",
-  "Data Scientist":"Python, Machine Learning, Statistics",
-  "UI/UX Designer":"User Research, Wireframes, Prototyping",
-  "Product Manager":"Roadmaps, Strategy, Stakeholders",
-  "Project Manager":"Agile, Scrum, Planning",
-  "Business Analyst":"Requirements, Analysis, Documentation",
-  "Accountant":"Accounting, Bookkeeping, Tax Reporting",
-  "Financial Analyst":"Financial Modeling, Forecasting",
-  "HR Manager":"Recruitment, HR Policies, Communication",
-  "SEO Specialist":"SEO, Keyword Research, Optimization",
-  "Content Manager":"Content Strategy, Copywriting",
-  "Graphic Designer":"Photoshop, Illustrator, Branding",
-  "QA Engineer":"Testing, Automation",
-  "DevOps Engineer":"CI/CD, Cloud",
-  "Cybersecurity Specialist":"Security, Risk Management",
-  "System Administrator":"Servers, Monitoring",
-  "Customer Support Specialist":"Customer Service"
+const skillsMap={
+"Frontend Developer":"HTML, CSS, JavaScript, React",
+"Backend Developer":"Node.js, APIs, Databases",
+"Full Stack Developer":"Frontend, Backend, APIs",
+"Software Engineer":"Algorithms, Debugging",
+"Data Analyst":"SQL, Excel, Python",
+"Data Scientist":"Machine Learning, Statistics",
+"UI/UX Designer":"Wireframes, Prototyping",
+"Product Manager":"Strategy, Roadmaps",
+"Project Manager":"Agile, Scrum",
+"Business Analyst":"Analysis, Documentation",
+"Accountant":"Accounting, Taxes",
+"Financial Analyst":"Forecasting, Modeling",
+"HR Manager":"Recruitment, Policies",
+"SEO Specialist":"SEO, Optimization",
+"Content Manager":"Content Strategy",
+"Graphic Designer":"Branding, Design",
+"QA Engineer":"Testing",
+"DevOps Engineer":"CI/CD, Cloud",
+"Cybersecurity Specialist":"Security",
+"System Administrator":"Servers"
 };
 
-const professions = Object.keys(skillsMap);
-const buttonsBox = document.getElementById("professionButtons");
-
-professions.forEach(p=>{
-  const d=document.createElement("div");
-  d.className="suggestion";
-  d.innerText=p;
-  d.onclick=()=>setJob(p);
-  buttonsBox.appendChild(d);
-});
+const professions=Object.keys(skillsMap);
+professionButtons.innerHTML=professions.map(p=>`<div class="suggestion" onclick="setJob('${p}')">${p}</div>`).join("");
 
 function setJob(job){
-  title.value=job;
-  skills.value=skillsMap[job]||"";
+title.value=job;
+skills.value=skillsMap[job];
+suggestions.innerHTML="";
 }
 
 function showSuggestions(){
-  suggestions.innerHTML="";
-  const v=title.value.toLowerCase();
-  if(v.length<2)return;
-
-  professions.filter(p=>p.toLowerCase().includes(v)).forEach(p=>{
-    const d=document.createElement("div");
-    d.className="suggestion";
-    d.innerText=p;
-    d.onclick=()=>{setJob(p);suggestions.innerHTML="";};
-    suggestions.appendChild(d);
-  });
+suggestions.innerHTML="";
+const v=title.value.toLowerCase();
+if(v.length<2)return;
+professions.filter(p=>p.toLowerCase().includes(v)).forEach(p=>{
+suggestions.innerHTML+=`<div class="suggestion" onclick="setJob('${p}')">${p}</div>`;
+});
 }
 
 function generateResume(){
-  rName.innerText=name.value;
-  rTitle.innerText=title.value;
-  rSummary.innerText=summary.value;
-  rExperience.innerText=experience.value;
-  rSkills.innerText=skills.value;
-  result.style.display="block";
-  result.scrollIntoView({behavior:"smooth"});
+rName.innerText=name.value;
+rTitle.innerText=title.value;
+rSummary.innerText=summary.value;
+rExperience.innerText=experience.value;
+rSkills.innerText=skills.value;
+result.style.display="block";
 }
 
 function downloadPDF(){
-  if(result.style.display==="none"){alert("Generate resume first");return;}
-  html2pdf().from(result).set({
-    margin:0.7,
-    filename:"resume.pdf",
-    html2canvas:{scale:2},
-    jsPDF:{unit:"in",format:"a4",orientation:"portrait"}
-  }).save();
+if(!name.value||!title.value){alert("Fill name and job title");return;}
+result.style.display="block";
+
+html2pdf().from(result).set({
+margin:10,
+filename:"resume.pdf",
+html2canvas:{scale:2},
+jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
+}).save().then(()=>{
+result.style.display="none";
+});
 }
 </script>
 
