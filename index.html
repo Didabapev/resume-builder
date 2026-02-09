@@ -199,17 +199,26 @@ result.style.display="block";
 }
 
 function downloadPDF(){
-if(!name.value||!title.value){alert("Fill name and job title");return;}
-result.style.display="block";
+  if(result.style.display==="none"){
+    alert("Generate resume first");
+    return;
+  }
 
-html2pdf().from(result).set({
-margin:10,
-filename:"resume.pdf",
-html2canvas:{scale:2},
-jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
-}).save().then(()=>{
-result.style.display="none";
-});
+  // если имя пустое — подставляем заглушку
+  if(!name.value){
+    rName.innerText = "Your Name";
+  }
+
+  result.style.display="block";
+
+  html2pdf().from(result).set({
+    margin:10,
+    filename:"resume.pdf",
+    html2canvas:{scale:2},
+    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
+  }).save().then(()=>{
+    result.style.display="none";
+  });
 }
 </script>
 
