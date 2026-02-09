@@ -1,110 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Free Online Resume Builder – Create Your Resume in Minutes</title>
-  <meta name="description" content="Free online resume builder. Create a professional resume or CV in minutes. No registration required. Download as PDF.">
-  <meta name="keywords" content="resume builder, free resume builder, online resume, CV builder, resume generator">
-  <meta name="robots" content="index, follow">
+<title>Free Online Resume Builder – Create Resume PDF</title>
+<meta name="description" content="Free online resume builder. Create a professional resume in minutes and download it as PDF. No registration required.">
+<meta name="keywords" content="resume builder, free resume builder, online resume, CV builder, resume pdf">
+<meta name="robots" content="index, follow">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:linear-gradient(135deg,#1e3c72,#2a5298);color:#fff;min-height:100vh}
+header{text-align:center;padding:40px 20px}
+header h1{font-size:42px;margin-bottom:10px}
+header p{font-size:18px;opacity:.9}
+.container{max-width:1100px;margin:auto;padding:20px}
+.card{background:#fff;color:#333;border-radius:12px;padding:30px;margin-bottom:30px;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+.card h2{color:#2a5298;margin-bottom:15px}
+.card p{line-height:1.6;margin-bottom:10px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.feature{background:#f4f6fb;padding:20px;border-radius:10px;text-align:center}
+.feature h3{color:#1e3c72;margin-bottom:10px}
+input,textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ccc;font-size:15px}
+button{background:#2a5298;color:#fff;border:none;padding:14px 20px;font-size:16px;border-radius:8px;cursor:pointer;margin-right:10px}
+button:hover{background:#1e3c72}
+#result h2{margin-bottom:5px}
+#result h4{margin-bottom:15px;color:#555}
+footer{text-align:center;padding:20px;font-size:14px;opacity:.9}
+@media(max-width:600px){header h1{font-size:30px}}
+</style>
+</head>
 
-    body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      min-height: 100vh;
-    }
+<body>
 
-    header {
-      padding: 40px 20px;
-      text-align: center;
-    }
+<header>
+<h1>Free Online Resume Builder</h1>
+<p>Create a professional resume and download it as PDF</p>
+</header>
 
-    header h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+<div class="container">
 
-    header p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
+<div class="card">
+<h2>Why Use Our Resume Builder?</h2>
+<div class="features">
+<div class="feature"><h3>100% Free</h3><p>No registration required</p></div>
+<div class="feature"><h3>Professional Design</h3><p>Clean modern layout</p></div>
+<div class="feature"><h3>Fast</h3><p>Create resume in minutes</p></div>
+<div class="feature"><h3>PDF Download</h3><p>Instant resume PDF</p></div>
+</div>
+</div>
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+<div class="card">
+<h2>Build Your Resume</h2>
+<input id="name" placeholder="Full Name">
+<input id="title" placeholder="Job Title">
+<textarea id="summary" rows="4" placeholder="Professional Summary"></textarea>
+<textarea id="experience" rows="4" placeholder="Work Experience"></textarea>
+<textarea id="skills" rows="3" placeholder="Skills (comma separated)"></textarea>
 
-    .card {
-      background: #ffffff;
-      color: #333;
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
+<button onclick="generateResume()">Generate Resume</button>
+<button onclick="downloadPDF()">Download PDF</button>
+</div>
 
-    .card h2 {
-      margin-bottom: 15px;
-      color: #2a5298;
-    }
+<div class="card" id="result" style="display:none">
+<h2 id="rName"></h2>
+<h4 id="rTitle"></h4>
+<p id="rSummary"></p>
+<h3>Experience</h3>
+<p id="rExperience"></p>
+<h3>Skills</h3>
+<p id="rSkills"></p>
+</div>
 
-    .card p {
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
+</div>
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
+<footer>
+<p>© 2026 Resume Builder | This tool does not guarantee employment</p>
+</footer>
 
-    .feature {
-      background: #f4f6fb;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    .feature h3 {
-      margin-bottom: 10px;
-      color: #1e3c72;
-    }
+<script>
+function generateResume(){
+document.getElementById("rName").innerText=name.value;
+document.getElementById("rTitle").innerText=title.value;
+document.getElementById("rSummary").innerText=summary.value;
+document.getElementById("rExperience").innerText=experience.value;
+document.getElementById("rSkills").innerText=skills.value;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
 
-    .builder {
-      margin-top: 20px;
-    }
+function downloadPDF(){
+const el=document.getElementById("result");
+if(el.style.display==="none"){alert("Generate resume first");return;}
+html2pdf().from(el).set({
+margin:0.5,
+filename:"resume.pdf",
+html2canvas:{scale:2},
+jsPDF:{unit:"in",format:"a4",orientation:"portrait"}
+}).save();
+}
+</script>
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-
-    button {
-      background: #2a5298;
-      color: #fff;
-      border: none;
-      padding: 14px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      backgro
-
+</body>
+</html>
