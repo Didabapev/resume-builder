@@ -5,72 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Professional Resume Builder | Free Online Resume PDF</title>
-<meta name="description" content="Professional resume builder with smart job and skill suggestions. Create a modern resume online and download it as PDF for free.">
+<meta name="description" content="Professional resume builder with smart job suggestions. Create a modern resume online and download it as PDF for free.">
 <meta name="keywords" content="resume builder, professional resume builder, free resume builder, online resume, CV builder, resume pdf">
 <meta name="robots" content="index, follow">
 
-<!-- Open Graph -->
 <meta property="og:title" content="Professional Resume Builder">
-<meta property="og:description" content="Create a professional resume online with smart job suggestions and download PDF for free.">
+<meta property="og:description" content="Create a professional resume online and download PDF for free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://didabapev.github.io/resume-builder/">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{background:#f4f6f8;color:#1f2937}
-header{background:#111827;color:#fff;padding:55px 20px;text-align:center}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:#111827;color:#1f2937}
+header{background:linear-gradient(135deg,#1f2937,#111827);color:#fff;padding:55px 20px;text-align:center}
 header h1{font-size:42px;margin-bottom:12px}
 header p{font-size:18px;opacity:.9}
+
 .container{max-width:1200px;margin:auto;padding:30px}
 .card{background:#fff;border-radius:16px;padding:30px;margin-bottom:30px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .card h2{margin-bottom:18px}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-.suggestion{border:1px solid #e5e7eb;padding:14px;border-radius:12px;cursor:pointer;text-align:center;background:#f9fafb;font-weight:500}
+
+.suggestion{
+  border:1px solid #e5e7eb;
+  padding:14px;
+  border-radius:12px;
+  cursor:pointer;
+  text-align:center;
+  background:#f9fafb;
+  font-weight:500;
+}
 .suggestion:hover{background:#e5e7eb}
-input,textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #d1d5db;margin-bottom:15px;font-size:15px}
-button{background:#111827;color:#fff;border:none;padding:14px 22px;border-radius:10px;font-size:15px;cursor:pointer;margin-right:10px}
-button:hover{background:#2563eb}
-#result h2{margin-bottom:6px}
-#result h4{margin-bottom:14px;color:#4b5563}
-footer{text-align:center;font-size:13px;color:#6b7280;padding:30px}
-@media(max-width:600px){header h1{font-size:30px}}
-  /* ===== ATS FRIENDLY PDF ===== */
+
+input,textarea{
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid #d1d5db;
+  margin-bottom:15px;
+  font-size:15px
+}
+
+button{
+  background:#111827;
+  color:#fff;
+  border:none;
+  padding:14px 22px;
+  border-radius:10px;
+  font-size:15px;
+  cursor:pointer;
+  margin-right:10px
+}
+button:hover{background:#000}
+
+footer{text-align:center;font-size:13px;color:#9ca3af;padding:30px}
+
+/* ===== ATS FRIENDLY PDF ===== */
 #result{
-  font-family: Arial, Helvetica, sans-serif;
-  color:#000;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#000
 }
 #result h2{
   font-size:22px;
   text-transform:uppercase;
   border-bottom:2px solid #000;
-  padding-bottom:6px;
+  padding-bottom:6px
 }
 #result h4{
   font-size:14px;
   font-weight:normal;
   margin-bottom:12px;
-  color:#000;
+  color:#000
 }
 #result h3{
   font-size:16px;
   margin-top:18px;
   border-bottom:1px solid #000;
-  padding-bottom:4px;
+  padding-bottom:4px
 }
 #result p{
   font-size:13px;
-  line-height:1.6;
+  line-height:1.6
 }
-  .suggestion{
-  border:1px solid #e5e7eb;
-  padding:12px;
-  border-radius:10px;
-  cursor:pointer;
-  background:#f9fafb;
-  font-weight:500;
-}
-.suggestion:hover{
-  background:#e5e7eb;
+
+@media(max-width:600px){
+  header h1{font-size:30px}
 }
 </style>
 </head>
@@ -79,50 +99,23 @@ footer{text-align:center;font-size:13px;color:#6b7280;padding:30px}
 
 <header>
 <h1>Professional Resume Builder</h1>
-<p>Create a modern resume with smart profession & skill suggestions</p>
+<p>Create a modern resume with smart profession suggestions</p>
 </header>
 
 <div class="container">
 
 <div class="card">
 <h2>Choose a Profession</h2>
-<div class="grid">
-
-<div class="suggestion" onclick="setJob('Frontend Developer')">Frontend Developer</div>
-<div class="suggestion" onclick="setJob('Backend Developer')">Backend Developer</div>
-<div class="suggestion" onclick="setJob('Full Stack Developer')">Full Stack Developer</div>
-<div class="suggestion" onclick="setJob('Software Engineer')">Software Engineer</div>
-<div class="suggestion" onclick="setJob('Data Analyst')">Data Analyst</div>
-<div class="suggestion" onclick="setJob('Data Scientist')">Data Scientist</div>
-<div class="suggestion" onclick="setJob('Marketing Manager')">Marketing Manager</div>
-<div class="suggestion" onclick="setJob('SEO Specialist')">SEO Specialist</div>
-<div class="suggestion" onclick="setJob('Content Manager')">Content Manager</div>
-<div class="suggestion" onclick="setJob('Graphic Designer')">Graphic Designer</div>
-<div class="suggestion" onclick="setJob('UI/UX Designer')">UI/UX Designer</div>
-<div class="suggestion" onclick="setJob('Product Manager')">Product Manager</div>
-<div class="suggestion" onclick="setJob('Project Manager')">Project Manager</div>
-<div class="suggestion" onclick="setJob('Business Analyst')">Business Analyst</div>
-<div class="suggestion" onclick="setJob('Accountant')">Accountant</div>
-<div class="suggestion" onclick="setJob('Financial Analyst')">Financial Analyst</div>
-<div class="suggestion" onclick="setJob('HR Manager')">HR Manager</div>
-<div class="suggestion" onclick="setJob('Recruiter')">Recruiter</div>
-<div class="suggestion" onclick="setJob('Sales Manager')">Sales Manager</div>
-<div class="suggestion" onclick="setJob('Customer Support Specialist')">Customer Support Specialist</div>
-<div class="suggestion" onclick="setJob('Operations Manager')">Operations Manager</div>
-<div class="suggestion" onclick="setJob('QA Engineer')">QA Engineer</div>
-<div class="suggestion" onclick="setJob('DevOps Engineer')">DevOps Engineer</div>
-<div class="suggestion" onclick="setJob('Cybersecurity Specialist')">Cybersecurity Specialist</div>
-<div class="suggestion" onclick="setJob('System Administrator')">System Administrator</div>
-<div class="suggestion" onclick="setJob('Network Engineer')">Network Engineer</div>
-
-</div>
+<div class="grid" id="professionButtons"></div>
 </div>
 
 <div class="card">
 <h2>Build Your Resume</h2>
+
 <input id="name" placeholder="Full Name">
-<input type="text" id="title" placeholder="Job Title" oninput="showSuggestions()" autocomplete="off">
+<input id="title" placeholder="Job Title" oninput="showSuggestions()" autocomplete="off">
 <div id="suggestions" class="grid"></div>
+
 <textarea id="summary" rows="4" placeholder="Professional Summary"></textarea>
 <textarea id="experience" rows="4" placeholder="Work Experience"></textarea>
 <textarea id="skills" rows="3" placeholder="Skills"></textarea>
@@ -134,9 +127,13 @@ footer{text-align:center;font-size:13px;color:#6b7280;padding:30px}
 <div class="card" id="result" style="display:none">
 <h2 id="rName"></h2>
 <h4 id="rTitle"></h4>
+
+<h3>Professional Summary</h3>
 <p id="rSummary"></p>
+
 <h3>Experience</h3>
 <p id="rExperience"></p>
+
 <h3>Skills</h3>
 <p id="rSkills"></p>
 </div>
@@ -145,127 +142,87 @@ footer{text-align:center;font-size:13px;color:#6b7280;padding:30px}
 
 <footer>
 <p>© 2026 Resume Builder · Free Online Resume Generator</p>
-<p>This website does not collect or store personal data. All information is processed locally in your browser.</p>
-  <a href="what-is-resume-builder.html">What is a Resume Builder?</a>
+<p>This website does not collect or store personal data.</p>
+<a href="what-is-resume-builder.html">What is a Resume Builder?</a>
 </footer>
-
-<!-- SEO Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Professional Resume Builder",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "All",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-const skillsMap={
-"Frontend Developer":"HTML, CSS, JavaScript, React, Responsive Design",
-"Backend Developer":"Node.js, APIs, Databases, Security",
-"Full Stack Developer":"Frontend, Backend, Databases, APIs",
-"Software Engineer":"Software Design, Algorithms, Debugging",
-"Data Analyst":"SQL, Excel, Python, Data Visualization",
-"Data Scientist":"Python, Machine Learning, Statistics",
-"Marketing Manager":"SEO, Google Ads, Analytics",
-"SEO Specialist":"SEO, Keyword Research, On-page Optimization",
-"Content Manager":"Content Strategy, Copywriting, CMS",
-"Graphic Designer":"Photoshop, Illustrator, Branding",
-"UI/UX Designer":"User Research, Wireframes, Prototyping",
-"Product Manager":"Roadmaps, Strategy, Stakeholders",
-"Project Manager":"Agile, Scrum, Planning",
-"Business Analyst":"Requirements, Analysis, Documentation",
-"Accountant":"Accounting, Bookkeeping, Tax Reporting",
-"Financial Analyst":"Financial Modeling, Forecasting",
-"HR Manager":"Recruitment, HR Policies, Communication",
-"Recruiter":"Talent Sourcing, Interviews",
-"Sales Manager":"Sales Strategy, CRM, Negotiation",
-"Customer Support Specialist":"Customer Service, Problem Solving",
-"Operations Manager":"Process Optimization, Management",
-"QA Engineer":"Testing, Bug Tracking, Automation",
-"DevOps Engineer":"CI/CD, Cloud, Infrastructure",
-"Cybersecurity Specialist":"Security, Risk Management",
-"System Administrator":"Servers, Maintenance, Monitoring",
-"Network Engineer":"Networking, Firewalls, Routing"
+const skillsMap = {
+  "Frontend Developer":"HTML, CSS, JavaScript, React, Responsive Design",
+  "Backend Developer":"Node.js, APIs, Databases, Security",
+  "Full Stack Developer":"Frontend, Backend, Databases, APIs",
+  "Software Engineer":"Software Design, Algorithms, Debugging",
+  "Data Analyst":"SQL, Excel, Python, Data Visualization",
+  "Data Scientist":"Python, Machine Learning, Statistics",
+  "UI/UX Designer":"User Research, Wireframes, Prototyping",
+  "Product Manager":"Roadmaps, Strategy, Stakeholders",
+  "Project Manager":"Agile, Scrum, Planning",
+  "Business Analyst":"Requirements, Analysis, Documentation",
+  "Accountant":"Accounting, Bookkeeping, Tax Reporting",
+  "Financial Analyst":"Financial Modeling, Forecasting",
+  "HR Manager":"Recruitment, HR Policies, Communication",
+  "SEO Specialist":"SEO, Keyword Research, Optimization",
+  "Content Manager":"Content Strategy, Copywriting",
+  "Graphic Designer":"Photoshop, Illustrator, Branding",
+  "QA Engineer":"Testing, Automation",
+  "DevOps Engineer":"CI/CD, Cloud",
+  "Cybersecurity Specialist":"Security, Risk Management",
+  "System Administrator":"Servers, Monitoring",
+  "Customer Support Specialist":"Customer Service"
 };
 
+const professions = Object.keys(skillsMap);
+const buttonsBox = document.getElementById("professionButtons");
+
+professions.forEach(p=>{
+  const d=document.createElement("div");
+  d.className="suggestion";
+  d.innerText=p;
+  d.onclick=()=>setJob(p);
+  buttonsBox.appendChild(d);
+});
+
 function setJob(job){
-title.value=job;
-skills.value=skillsMap[job]||"";
+  title.value=job;
+  skills.value=skillsMap[job]||"";
+}
+
+function showSuggestions(){
+  suggestions.innerHTML="";
+  const v=title.value.toLowerCase();
+  if(v.length<2)return;
+
+  professions.filter(p=>p.toLowerCase().includes(v)).forEach(p=>{
+    const d=document.createElement("div");
+    d.className="suggestion";
+    d.innerText=p;
+    d.onclick=()=>{setJob(p);suggestions.innerHTML="";};
+    suggestions.appendChild(d);
+  });
 }
 
 function generateResume(){
-rName.innerText=name.value;
-rTitle.innerText=title.value;
-rSummary.innerText=summary.value;
-rExperience.innerText=experience.value;
-rSkills.innerText=skills.value;
-result.style.display="block";
-result.scrollIntoView({behavior:"smooth"});
+  rName.innerText=name.value;
+  rTitle.innerText=title.value;
+  rSummary.innerText=summary.value;
+  rExperience.innerText=experience.value;
+  rSkills.innerText=skills.value;
+  result.style.display="block";
+  result.scrollIntoView({behavior:"smooth"});
 }
 
 function downloadPDF(){
-if(result.style.display==="none"){alert("Generate resume first");return;}
-html2pdf().from(result).set({
-margin:0.5,
-filename:"resume.pdf",
-html2canvas:{scale:2},
-jsPDF:{unit:"in",format:"a4",orientation:"portrait"}
-}).save();
-}
-  <script>
-const professions = [
-  "Software Engineer",
-  "Web Developer",
-  "Frontend Developer",
-  "Backend Developer",
-  "Full Stack Developer",
-  "Data Analyst",
-  "Data Scientist",
-  "Product Manager",
-  "Project Manager",
-  "UI/UX Designer",
-  "Graphic Designer",
-  "Digital Marketing Specialist",
-  "SEO Specialist",
-  "Content Writer",
-  "Copywriter",
-  "Business Analyst",
-  "Financial Analyst",
-  "Accountant",
-  "HR Manager",
-  "Customer Support Specialist"
-];
-
-function showSuggestions(){
-  const input = document.getElementById("title");
-  const box = document.getElementById("suggestions");
-  const value = input.value.toLowerCase();
-  box.innerHTML = "";
-
-  if(value.length < 2) return;
-
-  professions
-    .filter(p => p.toLowerCase().includes(value))
-    .forEach(p => {
-      const div = document.createElement("div");
-      div.className = "suggestion";
-      div.innerText = p;
-      div.onclick = () => {
-        input.value = p;
-        box.innerHTML = "";
-      };
-      box.appendChild(div);
-    });
+  if(result.style.display==="none"){alert("Generate resume first");return;}
+  html2pdf().from(result).set({
+    margin:0.7,
+    filename:"resume.pdf",
+    html2canvas:{scale:2},
+    jsPDF:{unit:"in",format:"a4",orientation:"portrait"}
+  }).save();
 }
 </script>
+
 </body>
 </html>
