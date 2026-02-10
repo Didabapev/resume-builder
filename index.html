@@ -98,7 +98,7 @@ Generated with Resume Builder
 </div>
 
 <footer>
-© 2026 Resume Builder · No data stored
+  © 2026 Resume Builder · Free & No Data Stored · Made for GitHub Pages
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -112,7 +112,12 @@ function generate() {
   rSkills.innerText = skills.value || "";
 }
 
+<script>
 function downloadPDF() {
+  const btn = event.target;
+  btn.innerText = "Generating...";
+  btn.disabled = true;
+
   const opt = {
     margin: 10,
     filename: (name.value || "resume") + ".pdf",
@@ -123,8 +128,17 @@ function downloadPDF() {
   html2pdf()
     .set(opt)
     .from(document.getElementById("resume"))
-    .save();
+    .save()
+    .then(() => {
+      btn.innerText = "Download PDF";
+      btn.disabled = false;
+    });
 }
+</script>
+  <script>
+["name","title","summary","experience","skills"].forEach(id => {
+  document.getElementById(id).addEventListener("input", generate);
+});
 </script>
 </body>
 </html>
