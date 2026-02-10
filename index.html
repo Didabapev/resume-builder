@@ -207,59 +207,58 @@ function generateResume(){
 }
 
 /* ===== PDF DOWNLOAD (FIXED) ===== */
+<script>
 function downloadPDF(){
   if(result.style.display==="none"){
     alert("Generate resume first");
     return;
   }
 
-  const btn = event.target;
-  const oldText = btn.innerText;
-  btn.innerText = "Generating PDF...";
-  btn.disabled = true;
+  // КЛОН блока
+  const clone = result.cloneNode(true);
 
-  /* временно уводим блок за экран */
-  result.style.position = "absolute";
-  result.style.left = "-9999px";
-  result.style.top = "0";
-  result.style.display = "block";
+  // стили специально для PDF
+  clone.style.display = "block";
+  clone.style.position = "fixed";
+  clone.style.left = "0";
+  clone.style.top = "0";
+  clone.style.width = "210mm";
+  clone.style.padding = "20px";
+  clone.style.background = "#fff";
+  clone.style.color = "#000";
+  clone.style.zIndex = "9999";
 
-  /* watermark */
+  // watermark (изюминка ✨)
   const watermark = document.createElement("div");
   watermark.innerText = "Generated with Resume Builder";
+  watermark.style.textAlign = "center";
   watermark.style.fontSize = "10px";
   watermark.style.color = "#999";
-  watermark.style.textAlign = "center";
   watermark.style.marginTop = "20px";
-  result.appendChild(watermark);
+  clone.appendChild(watermark);
 
-  setTimeout(()=>{
-    html2pdf()
-      .set({
-        margin:12,
-        filename:"resume.pdf",
-        html2canvas:{
-          scale:2,
-          useCORS:true
-        },
-        jsPDF:{
-          unit:"mm",
-          format:"a4",
-          orientation:"portrait"
-        }
-      })
-      .from(result)
-      .save()
-      .then(()=>{
-        watermark.remove();
-        result.style.left="0";
-        result.style.position="relative";
-        btn.innerText = oldText;
-        btn.disabled = false;
-      });
-  }, 300);
+  document.body.appendChild(clone);
+
+  html2pdf()
+    .set({
+      margin: 10,
+      filename: "resume.pdf",
+      html2canvas: {
+        scale: 2,
+        backgroundColor: "#ffffff"
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait"
+      }
+    })
+    .from(clone)
+    .save()
+    .then(() => {
+      document.body.removeChild(clone);
+    });
 }
 </script>
-
 </body>
 </html>
