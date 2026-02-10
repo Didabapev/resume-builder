@@ -172,53 +172,92 @@ const skillsMap={
 };
 
 const professions=Object.keys(skillsMap);
-professionButtons.innerHTML=professions.map(p=>`<div class="suggestion" onclick="setJob('${p}')">${p}</div>`).join("");
+professionButtons.innerHTML=professions
+  .map(p=>`<div class="suggestion" onclick="setJob('${p}')">${p}</div>`)
+  .join("");
 
 function setJob(job){
-title.value=job;
-skills.value=skillsMap[job];
-suggestions.innerHTML="";
+  title.value=job;
+  skills.value=skillsMap[job];
+  suggestions.innerHTML="";
 }
 
 function showSuggestions(){
-suggestions.innerHTML="";
-const v=title.value.toLowerCase();
-if(v.length<2)return;
-professions.filter(p=>p.toLowerCase().includes(v)).forEach(p=>{
-suggestions.innerHTML+=`<div class="suggestion" onclick="setJob('${p}')">${p}</div>`;
-});
+  suggestions.innerHTML="";
+  const v=title.value.toLowerCase();
+  if(v.length<2) return;
+  professions
+    .filter(p=>p.toLowerCase().includes(v))
+    .forEach(p=>{
+      suggestions.innerHTML+=
+        `<div class="suggestion" onclick="setJob('${p}')">${p}</div>`;
+    });
 }
 
 function generateResume(){
-rName.innerText=name.value;
-rTitle.innerText=title.value;
-rSummary.innerText=summary.value;
-rExperience.innerText=experience.value;
-rSkills.innerText=skills.value;
-result.style.display="block";
+  rName.innerText=name.value || "Your Name";
+  rTitle.innerText=title.value || "Job Title";
+  rSummary.innerText=summary.value;
+  rExperience.innerText=experience.value;
+  rSkills.innerText=skills.value;
+
+  // показываем результат НЕ через display:none
+  result.style.display="block";
+  result.style.position="relative";
 }
 
+/* ===== PDF DOWNLOAD (FIXED) ===== */
 function downloadPDF(){
   if(result.style.display==="none"){
     alert("Generate resume first");
     return;
   }
 
-  // если имя пустое — подставляем заглушку
-  if(!name.value){
-    rName.innerText = "Your Name";
-  }
+  const btn = event.target;
+  const oldText = btn.innerText;
+  btn.innerText = "Generating PDF...";
+  btn.disabled = true;
 
-  result.style.display="block";
+  /* временно уводим блок за экран */
+  result.style.position = "absolute";
+  result.style.left = "-9999px";
+  result.style.top = "0";
+  result.style.display = "block";
 
-  html2pdf().from(result).set({
-    margin:10,
-    filename:"resume.pdf",
-    html2canvas:{scale:2},
-    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
-  }).save().then(()=>{
-    result.style.display="none";
-  });
+  /* watermark */
+  const watermark = document.createElement("div");
+  watermark.innerText = "Generated with Resume Builder";
+  watermark.style.fontSize = "10px";
+  watermark.style.color = "#999";
+  watermark.style.textAlign = "center";
+  watermark.style.marginTop = "20px";
+  result.appendChild(watermark);
+
+  setTimeout(()=>{
+    html2pdf()
+      .set({
+        margin:12,
+        filename:"resume.pdf",
+        html2canvas:{
+          scale:2,
+          useCORS:true
+        },
+        jsPDF:{
+          unit:"mm",
+          format:"a4",
+          orientation:"portrait"
+        }
+      })
+      .from(result)
+      .save()
+      .then(()=>{
+        watermark.remove();
+        result.style.left="0";
+        result.style.position="relative";
+        btn.innerText = oldText;
+        btn.disabled = false;
+      });
+  }, 300);
 }
 </script>
 
