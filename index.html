@@ -14,7 +14,10 @@
 <meta property="og:url" content="https://didabapev.github.io/resume-builder/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  
 <title>Free Resume Builder – Download PDF</title>
 <meta name="description" content="Create a professional resume online and download it as PDF for free.">
 
@@ -59,7 +62,26 @@ button:hover {
 button:active {
   transform: scale(0.97);
 }
+  #resume {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #111;
+}
 
+#resume h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#resume h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 18px;
+}
+
+#resume p {
+  font-size: 13px;
+  line-height: 1.6;
+}
 </style>
 </head>
 
@@ -135,7 +157,10 @@ function downloadPDF() {
   const opt = {
     margin: 10,
     filename: (name.value || "resume") + ".pdf",
-    html2canvas: { scale: 2 },
+   html2canvas: {
+  scale: 2,
+  useCORS: true
+},
     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
   };
 
