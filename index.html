@@ -54,12 +54,19 @@ footer{text-align:center;color:#aaa;font-size:13px;padding:25px}
 <textarea id="experience" placeholder="Experience"></textarea>
 <textarea id="skills" placeholder="Skills"></textarea>
 
+<!-- 🔽 ВОТ ТУТ КНОПКИ ШАБЛОНОВ -->
+<div style="margin-bottom:15px">
+  <button type="button" onclick="setTemplate('classic')">Classic</button>
+  <button type="button" onclick="setTemplate('modern')">Modern</button>
+  <button type="button" onclick="setTemplate('minimal')">Minimal</button>
+</div>
+
 <button onclick="generate()">Generate Resume</button>
 <button onclick="downloadPDF()">Download PDF</button>
 </div>
 
 <!-- РЕЗЮМЕ ВСЕГДА В DOM -->
-<div class="card" id="resume">
+<div class="card classic" id="resume">
 <h2 id="rName">Your Name</h2>
 <p id="rTitle">Job Title</p>
 
@@ -86,24 +93,27 @@ Generated with Resume Builder
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-function generate(){
+function generate() {
   rName.innerText = name.value || "Your Name";
   rTitle.innerText = title.value || "Job Title";
-  rSummary.innerText = summary.value;
-  rExperience.innerText = experience.value;
-  rSkills.innerText = skills.value;
+  rSummary.innerText = summary.value || "";
+  rExperience.innerText = experience.value || "";
+  rSkills.innerText = skills.value || "";
 }
 
-function downloadPDF(){
+function downloadPDF() {
   const opt = {
     margin: 10,
     filename: (name.value || "resume") + ".pdf",
     html2canvas: { scale: 2 },
     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
   };
-  html2pdf().set(opt).from(document.getElementById("resume")).save();
+
+  html2pdf()
+    .set(opt)
+    .from(document.getElementById("resume"))
+    .save();
 }
 </script>
-
 </body>
 </html>
