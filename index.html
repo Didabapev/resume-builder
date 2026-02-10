@@ -209,57 +209,32 @@ function generateResume(){
 /* ===== PDF DOWNLOAD (FIXED) ===== */
 <script>
 function downloadPDF(){
-  if(result.style.display==="none"){
+  if(result.style.display === "none"){
     alert("Generate resume first");
     return;
   }
 
-  // КЛОН блока
-  const clone = result.cloneNode(true);
+  // Убедимся, что блок видим
+  result.style.display = "block";
+  result.style.opacity = "1";
+  result.style.position = "relative";
 
-  // стили специально для PDF
-  clone.style.display = "block";
-  clone.style.position = "fixed";
-  clone.style.left = "0";
-  clone.style.top = "0";
-  clone.style.width = "210mm";
-  clone.style.padding = "20px";
-  clone.style.background = "#fff";
-  clone.style.color = "#000";
-  clone.style.zIndex = "9999";
+  // ВАРИАНТ html2pdf.js (надёжный)
+  const opt = {
+    margin:       [10, 10, 10, 10],
+    filename:     "resume.pdf",
+    image:        { type: "jpeg", quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true },
+    jsPDF:        { unit: "mm", format: "a4", orientation: "portrait" }
+  };
 
-  // watermark (изюминка ✨)
-  const watermark = document.createElement("div");
-  watermark.innerText = "Generated with Resume Builder";
-  watermark.style.textAlign = "center";
-  watermark.style.fontSize = "10px";
-  watermark.style.color = "#999";
-  watermark.style.marginTop = "20px";
-  clone.appendChild(watermark);
-
-  document.body.appendChild(clone);
-
-  html2pdf()
-    .set({
-      margin: 10,
-      filename: "resume.pdf",
-      html2canvas: {
-        scale: 2,
-        backgroundColor: "#ffffff"
-      },
-      jsPDF: {
-        unit: "mm",
-        format: "a4",
-        orientation: "portrait"
-      }
-    })
-    .from(clone)
-    .save()
-    .then(() => {
-      document.body.removeChild(clone);
-    });
+  html2pdf().set(opt).from(result).save().catch(err => {
+    console.error("PDF generation failed:", err);
+    alert("Error: PDF could not be generated.");
+  });
 }
 </script>
+
 
 </body>
 </html>
