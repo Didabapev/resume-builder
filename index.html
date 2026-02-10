@@ -4,131 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Professional Resume Builder | Free Online Resume PDF</title>
-<meta name="description" content="Professional resume builder with smart job suggestions. Create a modern resume online and download it as PDF for free.">
-<meta name="keywords" content="resume builder, professional resume builder, free resume builder, online resume, CV builder, resume pdf">
-<meta name="robots" content="index, follow">
-
-<meta property="og:title" content="Professional Resume Builder">
-<meta property="og:description" content="Create a professional resume online and download PDF for free.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://didabapev.github.io/resume-builder/">
+<title>Free Resume Builder – Download PDF</title>
+<meta name="description" content="Create a professional resume online and download it as PDF for free.">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#111827;color:#1f2937}
-header{background:linear-gradient(135deg,#1f2937,#111827);color:#fff;padding:55px 20px;text-align:center}
-header h1{font-size:42px;margin-bottom:12px}
-header p{font-size:18px;opacity:.9}
+body{background:#111827;color:#111}
+header{background:#0f172a;color:#fff;padding:40px 20px;text-align:center}
+header h1{font-size:36px}
+.container{max-width:1100px;margin:auto;padding:30px}
+.card{background:#fff;border-radius:14px;padding:25px;margin-bottom:25px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px}
+button{background:#0f172a;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer}
+button:hover{background:#020617}
 
-.container{max-width:1200px;margin:auto;padding:30px}
-.card{background:#fff;border-radius:16px;padding:30px;margin-bottom:30px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-.card h2{margin-bottom:18px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-
-.suggestion{
-  border:1px solid #e5e7eb;
-  padding:14px;
-  border-radius:12px;
-  cursor:pointer;
-  text-align:center;
-  background:#f9fafb;
-  font-weight:500;
-}
-.suggestion:hover{background:#e5e7eb}
-
-input,textarea{
-  width:100%;
-  padding:13px;
-  border-radius:10px;
-  border:1px solid #d1d5db;
-  margin-bottom:15px;
-  font-size:15px
-}
-
-button{
-  background:#111827;
-  color:#fff;
-  border:none;
-  padding:14px 22px;
-  border-radius:10px;
-  font-size:15px;
-  cursor:pointer;
-  margin-right:10px
-}
-button:hover{background:#000}
-
-footer{text-align:center;font-size:13px;color:#9ca3af;padding:30px}
-
-/* ===== ATS FRIENDLY PDF ===== */
-#result{
-  font-family:Arial,Helvetica,sans-serif;
-  color:#000;
+#resume{
   background:#fff;
+  color:#000;
+  padding:30px;
+  margin-top:20px;
 }
-#result h2{
-  font-size:22px;
-  text-transform:uppercase;
+#resume h2{
   border-bottom:2px solid #000;
-  padding-bottom:6px
+  padding-bottom:6px;
+  margin-bottom:10px;
 }
-#result h4{
-  font-size:14px;
-  font-weight:normal;
-  margin-bottom:12px
-}
-#result h3{
-  font-size:16px;
-  margin-top:18px;
+#resume h3{
+  margin-top:16px;
   border-bottom:1px solid #000;
-  padding-bottom:4px
 }
-#result p{
-  font-size:13px;
-  line-height:1.6
-}
-
-@media(max-width:600px){
-  header h1{font-size:30px}
-}
+#resume p{font-size:14px;line-height:1.6}
+footer{text-align:center;color:#aaa;font-size:13px;padding:25px}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Professional Resume Builder</h1>
-<p>Create a modern resume with smart profession suggestions</p>
+<h1>Free Resume Builder</h1>
+<p>Create resume & download PDF</p>
 </header>
 
 <div class="container">
 
 <div class="card">
-<h2>Choose a Profession</h2>
-<div class="grid" id="professionButtons"></div>
-</div>
-
-<div class="card">
-<h2>Build Your Resume</h2>
-
 <input id="name" placeholder="Full Name">
-<input id="title" placeholder="Job Title" oninput="showSuggestions()" autocomplete="off">
-<div id="suggestions" class="grid"></div>
+<input id="title" placeholder="Job Title">
+<textarea id="summary" placeholder="Professional Summary"></textarea>
+<textarea id="experience" placeholder="Experience"></textarea>
+<textarea id="skills" placeholder="Skills"></textarea>
 
-<textarea id="summary" rows="4" placeholder="Professional Summary"></textarea>
-<textarea id="experience" rows="4" placeholder="Work Experience"></textarea>
-<textarea id="skills" rows="3" placeholder="Skills"></textarea>
-
-<button onclick="generateResume()">Generate Resume</button>
+<button onclick="generate()">Generate Resume</button>
 <button onclick="downloadPDF()">Download PDF</button>
 </div>
 
-<div class="card" id="result" style="display:none">
-<h2 id="rName"></h2>
-<h4 id="rTitle"></h4>
+<!-- РЕЗЮМЕ ВСЕГДА В DOM -->
+<div class="card" id="resume">
+<h2 id="rName">Your Name</h2>
+<p id="rTitle">Job Title</p>
 
-<h3>Professional Summary</h3>
+<h3>Summary</h3>
 <p id="rSummary"></p>
 
 <h3>Experience</h3>
@@ -136,105 +71,39 @@ footer{text-align:center;font-size:13px;color:#9ca3af;padding:30px}
 
 <h3>Skills</h3>
 <p id="rSkills"></p>
+
+<p style="margin-top:20px;font-size:11px;color:#777;text-align:center">
+Generated with Resume Builder
+</p>
 </div>
 
 </div>
 
 <footer>
-<p>© 2026 Resume Builder · Free Online Resume Generator</p>
-<p>This website does not collect or store personal data.</p>
+© 2026 Resume Builder · No data stored
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-const skillsMap={
-"Frontend Developer":"HTML, CSS, JavaScript, React",
-"Backend Developer":"Node.js, APIs, Databases",
-"Full Stack Developer":"Frontend, Backend, APIs",
-"Software Engineer":"Algorithms, Debugging",
-"Data Analyst":"SQL, Excel, Python",
-"Data Scientist":"Machine Learning, Statistics",
-"UI/UX Designer":"Wireframes, Prototyping",
-"Product Manager":"Strategy, Roadmaps",
-"Project Manager":"Agile, Scrum",
-"Business Analyst":"Analysis, Documentation",
-"Accountant":"Accounting, Taxes",
-"Financial Analyst":"Forecasting, Modeling",
-"HR Manager":"Recruitment, Policies",
-"SEO Specialist":"SEO, Optimization",
-"Content Manager":"Content Strategy",
-"Graphic Designer":"Branding, Design",
-"QA Engineer":"Testing",
-"DevOps Engineer":"CI/CD, Cloud",
-"Cybersecurity Specialist":"Security",
-"System Administrator":"Servers"
-};
-
-const professions=Object.keys(skillsMap);
-professionButtons.innerHTML=professions
-  .map(p=>`<div class="suggestion" onclick="setJob('${p}')">${p}</div>`)
-  .join("");
-
-function setJob(job){
-  title.value=job;
-  skills.value=skillsMap[job];
-  suggestions.innerHTML="";
+function generate(){
+  rName.innerText = name.value || "Your Name";
+  rTitle.innerText = title.value || "Job Title";
+  rSummary.innerText = summary.value;
+  rExperience.innerText = experience.value;
+  rSkills.innerText = skills.value;
 }
 
-function showSuggestions(){
-  suggestions.innerHTML="";
-  const v=title.value.toLowerCase();
-  if(v.length<2) return;
-  professions
-    .filter(p=>p.toLowerCase().includes(v))
-    .forEach(p=>{
-      suggestions.innerHTML+=
-        `<div class="suggestion" onclick="setJob('${p}')">${p}</div>`;
-    });
-}
-
-function generateResume(){
-  rName.innerText=name.value || "Your Name";
-  rTitle.innerText=title.value || "Job Title";
-  rSummary.innerText=summary.value;
-  rExperience.innerText=experience.value;
-  rSkills.innerText=skills.value;
-
-  // показываем результат НЕ через display:none
-  result.style.display="block";
-  result.style.position="relative";
-}
-
-/* ===== PDF DOWNLOAD (FIXED) ===== */
-<script>
 function downloadPDF(){
-  if(result.style.display === "none"){
-    alert("Generate resume first");
-    return;
-  }
-
-  // Убедимся, что блок видим
-  result.style.display = "block";
-  result.style.opacity = "1";
-  result.style.position = "relative";
-
-  // ВАРИАНТ html2pdf.js (надёжный)
   const opt = {
-    margin:       [10, 10, 10, 10],
-    filename:     "resume.pdf",
-    image:        { type: "jpeg", quality: 0.98 },
-    html2canvas:  { scale: 2, useCORS: true },
-    jsPDF:        { unit: "mm", format: "a4", orientation: "portrait" }
+    margin: 10,
+    filename: (name.value || "resume") + ".pdf",
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
   };
-
-  html2pdf().set(opt).from(result).save().catch(err => {
-    console.error("PDF generation failed:", err);
-    alert("Error: PDF could not be generated.");
-  });
+  html2pdf().set(opt).from(document.getElementById("resume")).save();
 }
 </script>
-
 
 </body>
 </html>
