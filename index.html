@@ -1,86 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Free Resume Builder – Create & Download Resume PDF Online</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Free online resume builder. Create a professional CV in minutes and download as PDF. No registration required.">
-<meta name="keywords" content="resume builder, cv builder, free resume pdf, online resume maker, resume generator">
+<title>Free Resume Builder – Professional CV Generator Online</title>
+<meta name="description" content="Create a professional resume online and download it as PDF. Free resume builder with modern templates. No registration required.">
+<meta name="keywords" content="resume builder, cv builder, resume pdf, professional resume, online resume maker">
+<meta name="robots" content="index, follow">
 <meta name="author" content="Resume Builder">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Free Resume Builder – Create Resume PDF Online">
-<meta property="og:description" content="Create a professional resume online and download it as a PDF. 100% free, no signup.">
+<meta property="og:description" content="Build a professional resume and download PDF instantly. 100% free.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://didabapev.github.io/resume-builder/">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  
-<title>Free Resume Builder – Download PDF</title>
-<meta name="description" content="Create a professional resume online and download it as PDF for free.">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#111827;color:#111}
-header{background:#0f172a;color:#fff;padding:40px 20px;text-align:center}
-header h1{font-size:36px}
-.container{max-width:1100px;margin:auto;padding:30px}
-.card{background:#fff;border-radius:14px;padding:25px;margin-bottom:25px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
-input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px}
-button{background:#0f172a;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer}
-button:hover{background:#020617}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
 
+body{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#111;
+}
+
+header{
+  text-align:center;
+  padding:70px 20px;
+  color:#fff;
+}
+
+header h1{font-size:42px;margin-bottom:10px}
+header p{opacity:.85;font-size:18px}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:30px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:25px;
+  margin-bottom:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  background:#0f172a;
+  color:#fff;
+  border:none;
+  padding:12px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.3s;
+  margin-right:8px;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+/* Resume */
 #resume{
   background:#fff;
-  color:#000;
-  padding:30px;
+  padding:35px;
   margin-top:20px;
+  transition:.3s;
 }
+
+#resume h1{font-size:28px}
 #resume h2{
-  border-bottom:2px solid #000;
-  padding-bottom:6px;
-  margin-bottom:10px;
-}
-#resume h3{
-  margin-top:16px;
+  font-size:18px;
+  margin-top:18px;
   border-bottom:1px solid #000;
 }
-#resume p{font-size:14px;line-height:1.6}
-footer{text-align:center;color:#aaa;font-size:13px;padding:25px}
-  button {
-  transition: all 0.25s ease;
-  cursor: pointer;
+#resume p{
+  font-size:14px;
+  line-height:1.6;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+/* Templates */
+.classic{}
+.modern{border-left:6px solid #2563eb}
+.minimal{font-family:Arial}
+.premium{
+  background:#111;
+  color:#fff;
+}
+.premium h2{
+  border-bottom:1px solid #fff;
 }
 
-button:active {
-  transform: scale(0.97);
-}
-  #resume {
-  font-family: 'Inter', Arial, sans-serif;
-  color: #111;
+/* SEO block */
+.seo{
+  font-size:15px;
+  line-height:1.7;
 }
 
-#resume h1 {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-#resume h2 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 18px;
-}
-
-#resume p {
-  font-size: 13px;
-  line-height: 1.6;
+footer{
+  text-align:center;
+  padding:30px;
+  color:#ddd;
+  font-size:13px;
 }
 </style>
 </head>
@@ -88,95 +121,139 @@ button:active {
 <body>
 
 <header>
-<h1>Free Resume Builder</h1>
-<p>Create resume & download PDF</p>
+<h1>Professional Resume Builder</h1>
+<p>Create, customize & download resume PDF instantly</p>
 </header>
 
 <div class="container">
 
 <div class="card">
+<h2>Create Your Resume</h2>
+
 <input id="name" placeholder="Full Name">
 <input id="title" placeholder="Job Title">
+
 <textarea id="summary" placeholder="Professional Summary"></textarea>
-<textarea id="experience" placeholder="Experience"></textarea>
+<button type="button" onclick="generateSummary()">✨ Generate Summary</button>
+
+<textarea id="experience" placeholder="Work Experience"></textarea>
 <textarea id="skills" placeholder="Skills"></textarea>
 
-<!-- 🔽 ВОТ ТУТ КНОПКИ ШАБЛОНОВ -->
-<div style="margin-bottom:15px">
+<div style="margin-top:15px">
   <button type="button" onclick="setTemplate('classic')">Classic</button>
   <button type="button" onclick="setTemplate('modern')">Modern</button>
   <button type="button" onclick="setTemplate('minimal')">Minimal</button>
+  <button type="button" onclick="setTemplate('premium')">Premium</button>
 </div>
 
+<br><br>
 <button onclick="generate()">Generate Resume</button>
-<button onclick="downloadPDF()">Download PDF</button>
+<button onclick="downloadPDF(this)">Download PDF</button>
 </div>
 
-<!-- РЕЗЮМЕ ВСЕГДА В DOM -->
 <div class="card classic" id="resume">
-<h2 id="rName">Your Name</h2>
+<h1 id="rName">Your Name</h1>
 <p id="rTitle">Job Title</p>
 
-<h3>Summary</h3>
+<h2>Summary</h2>
 <p id="rSummary"></p>
 
-<h3>Experience</h3>
+<h2>Experience</h2>
 <p id="rExperience"></p>
 
-<h3>Skills</h3>
+<h2>Skills</h2>
 <p id="rSkills"></p>
 
-<p style="margin-top:20px;font-size:11px;color:#777;text-align:center">
-Generated with Resume Builder
+<p style="margin-top:25px;font-size:11px;text-align:center;opacity:.6">
+Generated with Professional Resume Builder
 </p>
+</div>
+
+<div class="card seo">
+<h2>Free Online Resume Builder</h2>
+<p>
+Our resume builder helps you create a professional CV in minutes.
+Choose from modern templates, customize your experience, and download your resume as a PDF instantly.
+This free resume maker is designed for job seekers who want a clean, ATS-friendly resume format.
+</p>
+
+<h3>Why Use Our Resume Builder?</h3>
+<ul>
+<li>✔ 100% Free</li>
+<li>✔ No Registration Required</li>
+<li>✔ Instant PDF Download</li>
+<li>✔ Professional Templates</li>
+</ul>
 </div>
 
 </div>
 
 <footer>
-  © 2026 Resume Builder · Free & No Data Stored · Made for GitHub Pages
+© 2026 Resume Builder · No Personal Data Stored · Built for GitHub Pages
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-function generate() {
-  rName.innerText = name.value || "Your Name";
-  rTitle.innerText = title.value || "Job Title";
-  rSummary.innerText = summary.value || "";
-  rExperience.innerText = experience.value || "";
-  rSkills.innerText = skills.value || "";
+<script>
+/* ===== AUTOSAVE ===== */
+["name","title","summary","experience","skills"].forEach(id=>{
+  const el=document.getElementById(id);
+  el.value=localStorage.getItem(id)||"";
+  el.addEventListener("input",()=>{
+    localStorage.setItem(id,el.value);
+  });
+});
+
+/* ===== GENERATE ===== */
+function generate(){
+  document.getElementById("rName").innerText =
+    document.getElementById("name").value || "Your Name";
+  document.getElementById("rTitle").innerText =
+    document.getElementById("title").value || "Job Title";
+  document.getElementById("rSummary").innerText =
+    document.getElementById("summary").value;
+  document.getElementById("rExperience").innerText =
+    document.getElementById("experience").value;
+  document.getElementById("rSkills").innerText =
+    document.getElementById("skills").value;
 }
 
-<script>
-function downloadPDF() {
-  const btn = event.target;
-  btn.innerText = "Generating...";
-  btn.disabled = true;
+/* ===== SMART SUMMARY ===== */
+function generateSummary(){
+  const job=document.getElementById("title").value;
+  if(!job)return alert("Enter job title first");
 
-  const opt = {
-    margin: 10,
-    filename: (name.value || "resume") + ".pdf",
-   html2canvas: {
-  scale: 2,
-  useCORS: true
-},
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+  const text=`Experienced ${job} with strong skills and proven ability to deliver high-quality results. Passionate about growth, efficiency, and continuous improvement.`;
+
+  document.getElementById("summary").value=text;
+  localStorage.setItem("summary",text);
+}
+
+/* ===== TEMPLATE SWITCH ===== */
+function setTemplate(type){
+  const resume=document.getElementById("resume");
+  resume.className="card "+type;
+}
+
+/* ===== PDF ===== */
+function downloadPDF(btn){
+  btn.innerText="Generating...";
+  btn.disabled=true;
+
+  const opt={
+    margin:10,
+    filename:(document.getElementById("name").value||"resume")+".pdf",
+    html2canvas:{scale:2,useCORS:true},
+    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
   };
 
-  html2pdf()
-    .set(opt)
-    .from(document.getElementById("resume"))
-    .save()
-    .then(() => {
-      btn.innerText = "Download PDF";
-      btn.disabled = false;
-    });
+  html2pdf().set(opt).from(document.getElementById("resume")).save()
+  .then(()=>{
+    btn.innerText="Download PDF";
+    btn.disabled=false;
+  });
 }
 </script>
-  <script>
-["name","title","summary","experience","skills"].forEach(id => {
-  document.getElementById(id).addEventListener("input", generate);
-});
-</script>
+
 </body>
 </html>
