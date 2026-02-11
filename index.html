@@ -236,22 +236,51 @@ function setTemplate(type){
 }
 
 /* ===== PDF ===== */
+<script>
 function downloadPDF(btn){
   btn.innerText="Generating...";
   btn.disabled=true;
 
+  const resume = document.getElementById("resume");
+
+  // Сохраняем текущий класс
+  const originalClass = resume.className;
+
+  // Временно убираем premium (если выбран)
+  if(resume.classList.contains("premium")){
+    resume.classList.remove("premium");
+    resume.style.background="#ffffff";
+    resume.style.color="#000000";
+  }
+
   const opt={
     margin:10,
     filename:(document.getElementById("name").value||"resume")+".pdf",
-    html2canvas:{scale:2,useCORS:true},
-    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
+    html2canvas:{
+      scale:2,
+      useCORS:true,
+      backgroundColor:"#ffffff"
+    },
+    jsPDF:{
+      unit:"mm",
+      format:"a4",
+      orientation:"portrait"
+    }
   };
 
-  html2pdf().set(opt).from(document.getElementById("resume")).save()
-  .then(()=>{
-    btn.innerText="Download PDF";
-    btn.disabled=false;
-  });
+  html2pdf()
+    .set(opt)
+    .from(resume)
+    .save()
+    .then(()=>{
+      // Возвращаем стиль обратно
+      resume.className = originalClass;
+      resume.style.background="";
+      resume.style.color="";
+
+      btn.innerText="Download PDF";
+      btn.disabled=false;
+    });
 }
 </script>
 
