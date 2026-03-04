@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
     <loc>https://didabapev.github.io/resume-builder/</loc>
-    <lastmod>2026-02-21</lastmod>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://didabapev.github.io/resume-builder/index.html</loc>
-    <priority>0.9</priority>
+    <loc>https://didabapev.github.io/resume-builder/blog/blog.html</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://didabapev.github.io/resume-builder/about.html</loc>
+    <loc>https://didabapev.github.io/resume-builder/blog/list-education-on-resume.html</loc>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://didabapev.github.io/resume-builder/privacy-policy.html</loc>
-    <priority>0.6</priority>
+    <loc>https://didabapev.github.io/resume-builder/blog/resume-photo-guide.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://didabapev.github.io/resume-builder/blog/remote-job-resume.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://didabapev.github.io/resume-builder/blog/increase-interview-calls.html</loc>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
-
