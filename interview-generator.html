@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Question Generator</title>
+<style>
+body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
+input { width: 100%; margin-bottom: 10px; padding: 10px; }
+button { padding: 10px 20px; cursor: pointer; }
+.output { border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Interview Question Generator</h1>
+
+<input id="job" placeholder="Job Title">
+
+<button onclick="generateQuestion()">Generate Question</button>
+
+<div class="output" id="result"></div>
+
+<script>
+function generateQuestion() {
+    let job = document.getElementById("job").value;
+
+    let questions = [
+        `Why do you want to work as a ${job}?`,
+        `What skills make you a strong ${job}?`,
+        `Describe a challenge you faced as a ${job}.`,
+        `How do you handle deadlines in a ${job} role?`,
+        `Why should we hire you as a ${job}?`
+    ];
+
+    let random = questions[Math.floor(Math.random() * questions.length)];
+    document.getElementById("result").innerHTML = random;
+}
+</script>
+
+</body>
+</html>
