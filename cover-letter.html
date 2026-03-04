@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Cover Letter Generator</title>
+<style>
+body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
+input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
+button { padding: 10px 20px; cursor: pointer; }
+.output { white-space: pre-wrap; border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Free Cover Letter Generator</h1>
+
+<input id="name" placeholder="Your Name">
+<input id="job" placeholder="Job Title">
+<input id="company" placeholder="Company Name">
+<textarea id="skills" placeholder="Your Skills"></textarea>
+
+<button onclick="generateLetter()">Generate Cover Letter</button>
+
+<div class="output" id="result"></div>
+
+<script>
+function generateLetter() {
+    let name = document.getElementById("name").value;
+    let job = document.getElementById("job").value;
+    let company = document.getElementById("company").value;
+    let skills = document.getElementById("skills").value;
+
+    let letter = `
+Dear Hiring Manager,
+
+My name is ${name}, and I am applying for the ${job} position at ${company}.
+
+With my experience in ${skills}, I believe I would be a valuable addition to your team.
+
+I am highly motivated, detail-oriented, and passionate about delivering quality results.
+
+Thank you for considering my application. I look forward to the opportunity to discuss how I can contribute to ${company}.
+
+Sincerely,
+${name}
+`;
+
+    document.getElementById("result").innerText = letter;
+}
+</script>
+
+</body>
+</html>
