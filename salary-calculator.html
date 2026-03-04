@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Salary Calculator</title>
+<style>
+body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
+input, select { width: 100%; margin-bottom: 10px; padding: 10px; }
+button { padding: 10px 20px; cursor: pointer; }
+.output { border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>US Salary Calculator</h1>
+
+<input id="hourly" type="number" placeholder="Hourly Rate ($)">
+<input id="hours" type="number" placeholder="Hours per Week">
+
+<select id="state">
+<option value="0.22">California (22% est tax)</option>
+<option value="0.20">Texas (20% est tax)</option>
+<option value="0.25">New York (25% est tax)</option>
+<option value="0.18">Florida (18% est tax)</option>
+</select>
+
+<button onclick="calculateSalary()">Calculate</button>
+
+<div class="output" id="result"></div>
+
+<script>
+function calculateSalary() {
+    let hourly = parseFloat(document.getElementById("hourly").value);
+    let hours = parseFloat(document.getElementById("hours").value);
+    let tax = parseFloat(document.getElementById("state").value);
+
+    let weekly = hourly * hours;
+    let yearly = weekly * 52;
+    let afterTax = yearly * (1 - tax);
+
+    document.getElementById("result").innerHTML = `
+    <strong>Yearly Salary (Before Tax):</strong> $${yearly.toFixed(2)}<br>
+    <strong>Estimated After Tax:</strong> $${afterTax.toFixed(2)}
+    `;
+}
+</script>
+
+</body>
+</html>
