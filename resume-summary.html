@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Summary Generator</title>
+<style>
+body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
+input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
+button { padding: 10px 20px; cursor: pointer; }
+.output { white-space: pre-wrap; border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Free Resume Summary Generator</h1>
+
+<input id="job" placeholder="Job Title">
+<input id="experience" placeholder="Years of Experience">
+<textarea id="skills" placeholder="Key Skills"></textarea>
+
+<button onclick="generateSummary()">Generate Summary</button>
+
+<div class="output" id="result"></div>
+
+<script>
+function generateSummary() {
+    let job = document.getElementById("job").value;
+    let experience = document.getElementById("experience").value;
+    let skills = document.getElementById("skills").value;
+
+    let summary = `
+Professional ${job} with over ${experience} years of experience.
+Skilled in ${skills}.
+Results-driven, detail-oriented, and committed to delivering high-quality performance.
+Seeking to contribute expertise and grow within a dynamic organization.
+`;
+
+    document.getElementById("result").innerText = summary;
+}
+</script>
+
+</body>
+</html>
