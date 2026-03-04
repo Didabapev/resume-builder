@@ -2,36 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PGE8BTDPRF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PGE8BTDPRF');
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Free Resume Builder – Professional CV Generator Online</title>
-<meta name="description" content="Create a professional resume online and download it as PDF. Free resume builder with modern templates. No registration required.">
-<meta name="keywords" content="resume builder, cv builder, resume pdf, professional resume, online resume maker">
-<meta name="robots" content="index, follow">
-<meta name="author" content="Resume Builder">
 
+<meta name="description" content="Create a professional resume online and download it as PDF instantly. 100% free resume builder with modern ATS-friendly templates. No registration required.">
+<meta name="keywords" content="resume builder, free resume builder, CV generator, resume PDF download, ATS resume maker, online resume creator">
+<meta name="robots" content="index, follow">
+<meta name="author" content="ResumeTools">
+
+<link rel="canonical" href="https://didabapev.github.io/resume-builder/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Free Resume Builder – Create Resume PDF Online">
-<meta property="og:description" content="Build a professional resume and download PDF instantly. 100% free.">
+<meta property="og:description" content="Build a professional resume and download PDF instantly. 100% free and ATS-friendly.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://didabapev.github.io/resume-builder/">
 
-<a href="cover-letter.html">Cover Letter Generator</a>
-<a href="resume-summary.html">Resume Summary Generator</a>
-<a href="salary-calculator.html">US Salary Calculator</a>
-<a href="interview-generator.html">Interview Question Generator</a>
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Resume Builder">
+<meta name="twitter:description" content="Create and download resume PDF instantly. Free online CV maker.">
 
-
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ResumeTools - Free Resume Builder",
+  "url": "https://didabapev.github.io/resume-builder/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
@@ -39,6 +50,42 @@
 body{
   background:linear-gradient(135deg,#0f172a,#1e293b);
   color:#111;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#0f172a;
+  padding:15px 30px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  font-size:18px;
+}
+
+.nav-links a{
+  color:#cbd5e1;
+  text-decoration:none;
+  margin-left:20px;
+  font-size:14px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:#fff;
 }
 
 header{
@@ -88,7 +135,6 @@ button:hover{
   box-shadow:0 10px 25px rgba(0,0,0,.3);
 }
 
-/* Resume */
 #resume{
   background:#fff;
   padding:35px;
@@ -107,8 +153,6 @@ button:hover{
   line-height:1.6;
 }
 
-/* Templates */
-.classic{}
 .modern{border-left:6px solid #2563eb}
 .minimal{font-family:Arial}
 .premium{
@@ -119,7 +163,6 @@ button:hover{
   border-bottom:1px solid #fff;
 }
 
-/* SEO block */
 .seo{
   font-size:15px;
   line-height:1.7;
@@ -136,6 +179,18 @@ footer{
 
 <body>
 
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">ResumeTools</a>
+    <div class="nav-links">
+      <a href="cover-letter.html">Cover Letter</a>
+      <a href="resume-summary.html">Summary Generator</a>
+      <a href="salary-calculator.html">Salary Calculator</a>
+      <a href="interview-generator.html">Interview Questions</a>
+    </div>
+  </div>
+</nav>
+
 <header>
 <h1>Professional Resume Builder</h1>
 <p>Create, customize & download resume PDF instantly</p>
@@ -148,7 +203,6 @@ footer{
 
 <input id="name" placeholder="Full Name">
 <input id="title" placeholder="Job Title">
-
 <textarea id="summary" placeholder="Professional Summary"></textarea>
 <button type="button" onclick="generateSummary()">✨ Generate Summary</button>
 
@@ -181,46 +235,35 @@ footer{
 <p id="rSkills"></p>
 
 <p style="margin-top:25px;font-size:11px;text-align:center;opacity:.6">
-Generated with Professional Resume Builder
+Generated with ResumeTools
 </p>
 </div>
 
 <div class="card seo">
 <h2>Free Online Resume Builder</h2>
 <p>
-Our resume builder helps you create a professional CV in minutes.
-Choose from modern templates, customize your experience, and download your resume as a PDF instantly.
-This free resume maker is designed for job seekers who want a clean, ATS-friendly resume format.
+Our free resume builder helps job seekers create professional,
+ATS-friendly resumes in minutes. Customize your experience,
+choose a template, and download your resume as a PDF instantly.
+No registration required.
 </p>
-
-<h3>Why Use Our Resume Builder?</h3>
-<ul>
-<li>✔ 100% Free</li>
-<li>✔ No Registration Required</li>
-<li>✔ Instant PDF Download</li>
-<li>✔ Professional Templates</li>
-</ul>
 </div>
 
 </div>
 
 <footer>
-© 2026 Resume Builder · No Personal Data Stored · Built for GitHub Pages
+© 2026 ResumeTools · No Personal Data Stored · Built for GitHub Pages
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-/* ===== AUTOSAVE ===== */
 ["name","title","summary","experience","skills"].forEach(id=>{
   const el=document.getElementById(id);
   el.value=localStorage.getItem(id)||"";
-  el.addEventListener("input",()=>{
-    localStorage.setItem(id,el.value);
-  });
+  el.addEventListener("input",()=>localStorage.setItem(id,el.value));
 });
 
-/* ===== GENERATE ===== */
 function generate(){
   document.getElementById("rName").innerText =
     document.getElementById("name").value || "Your Name";
@@ -234,68 +277,38 @@ function generate(){
     document.getElementById("skills").value;
 }
 
-/* ===== SMART SUMMARY ===== */
 function generateSummary(){
   const job=document.getElementById("title").value;
   if(!job)return alert("Enter job title first");
 
-  const text=`Experienced ${job} with strong skills and proven ability to deliver high-quality results. Passionate about growth, efficiency, and continuous improvement.`;
+  const text=`Experienced ${job} with strong problem-solving skills and proven ability to deliver results. Dedicated to professional growth and high-quality performance.`;
 
   document.getElementById("summary").value=text;
   localStorage.setItem("summary",text);
 }
 
-/* ===== TEMPLATE SWITCH ===== */
 function setTemplate(type){
   const resume=document.getElementById("resume");
   resume.className="card "+type;
 }
 
-/* ===== PDF ===== */
 function downloadPDF(btn){
   btn.innerText="Generating...";
   btn.disabled=true;
 
-  const resume = document.getElementById("resume");
-
-  // Сохраняем текущий класс
-  const originalClass = resume.className;
-
-  // Временно убираем premium (если выбран)
-  if(resume.classList.contains("premium")){
-    resume.classList.remove("premium");
-    resume.style.background="#ffffff";
-    resume.style.color="#000000";
-  }
+  const resume=document.getElementById("resume");
 
   const opt={
     margin:10,
     filename:(document.getElementById("name").value||"resume")+".pdf",
-    html2canvas:{
-      scale:2,
-      useCORS:true,
-      backgroundColor:"#ffffff"
-    },
-    jsPDF:{
-      unit:"mm",
-      format:"a4",
-      orientation:"portrait"
-    }
+    html2canvas:{scale:2,backgroundColor:"#ffffff"},
+    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
   };
 
-  html2pdf()
-    .set(opt)
-    .from(resume)
-    .save()
-    .then(()=>{
-      // Возвращаем стиль обратно
-      resume.className = originalClass;
-      resume.style.background="";
-      resume.style.color="";
-
-      btn.innerText="Download PDF";
-      btn.disabled=false;
-    });
+  html2pdf().set(opt).from(resume).save().then(()=>{
+    btn.innerText="Download PDF";
+    btn.disabled=false;
+  });
 }
 </script>
 
