@@ -1,48 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>US Salary Calculator</title>
-<style>
-body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
-input, select { width: 100%; margin-bottom: 10px; padding: 10px; }
-button { padding: 10px 20px; cursor: pointer; }
-.output { border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Salary Calculator | Hourly to Yearly Pay | ResumeTools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: #0f172a; color: #f8fafc; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .calc-wrapper { 
+            max-width: 500px; width: 100%; background: #1e293b; padding: 30px; 
+            border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid #334155; 
+        }
+
+        h1 { font-size: 24px; margin-bottom: 20px; text-align: center; color: #38bdf8; }
+        
+        label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 5px; text-transform: uppercase; font-weight: 600; }
+        input, select { 
+            width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; 
+            border: 1px solid #334155; background: #0f172a; color: #fff; outline: none; font-size: 16px;
+        }
+        input:focus, select:focus { border-color: #38bdf8; }
+
+        button { 
+            width: 100%; background: #38bdf8; color: #0f172a; border: none; 
+            padding: 15px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        button:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+        .output { 
+            margin-top: 25px; padding: 20px; background: #0f172a; border-radius: 12px; 
+            display: none; border-left: 4px solid #10b981;
+        }
+        .res-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
+        .res-row b { color: #10b981; font-size: 18px; }
+
+        .back-link { margin-top: 20px; color: #64748b; text-decoration: none; font-size: 13px; }
+    </style>
 </head>
 <body>
 
-<h1>US Salary Calculator</h1>
+<div class="calc-wrapper">
+    <h1>US Salary Calculator</h1>
 
-<input id="hourly" type="number" placeholder="Hourly Rate ($)">
-<input id="hours" type="number" placeholder="Hours per Week">
+    <label>Hourly Rate ($)</label>
+    <input id="hourly" type="number" placeholder="e.g. 25" oninput="calculateSalary()">
 
-<select id="state">
-<option value="0.22">California (22% est tax)</option>
-<option value="0.20">Texas (20% est tax)</option>
-<option value="0.25">New York (25% est tax)</option>
-<option value="0.18">Florida (18% est tax)</option>
-</select>
+    <label>Hours per Week</label>
+    <input id="hours" type="number" placeholder="40" value="40" oninput="calculateSalary()">
 
-<button onclick="calculateSalary()">Calculate</button>
+    <label>Select State (Est. Tax)</label>
+    <select id="state" onchange="calculateSalary()">
+        <option value="0.22">California (22%)</option>
+        <option value="0.20">Texas (20%)</option>
+        <option value="0.25">New York (25%)</option>
+        <option value="0.18">Florida (18%)</option>
+        <option value="0.15">Washington (15%)</option>
+    </select>
 
-<div class="output" id="result"></div>
+    <div class="output" id="resultBlock">
+        <div class="res-row">Annual Gross: <b id="yearlyGross">$0</b></div>
+        <div class="res-row">Annual Net (After Tax): <b id="afterTax">$0</b></div>
+        <div class="res-row">Monthly Net: <b id="monthlyNet">$0</b></div>
+        <div class="res-row">Weekly Net: <b id="weeklyNet">$0</b></div>
+    </div>
+</div>
+
+<a href="index.html" class="back-link">← Back to ResumeTools</a>
 
 <script>
 function calculateSalary() {
-    let hourly = parseFloat(document.getElementById("hourly").value);
-    let hours = parseFloat(document.getElementById("hours").value);
-    let tax = parseFloat(document.getElementById("state").value);
+    let hourly = parseFloat(document.getElementById("hourly").value) || 0;
+    let hours = parseFloat(document.getElementById("hours").value) || 0;
+    let taxRate = parseFloat(document.getElementById("state").value);
 
-    let weekly = hourly * hours;
-    let yearly = weekly * 52;
-    let afterTax = yearly * (1 - tax);
-
-    document.getElementById("result").innerHTML = `
-    <strong>Yearly Salary (Before Tax):</strong> $${yearly.toFixed(2)}<br>
-    <strong>Estimated After Tax:</strong> $${afterTax.toFixed(2)}
-    `;
+    if(hourly > 0) {
+        let weekly = hourly * hours;
+        let yearly = weekly * 52;
+        let yearlyNet = yearly * (1 - taxRate);
+        
+        document.getElementById("yearlyGross").innerText = "$" + yearly.toLocaleString();
+        document.getElementById("afterTax").innerText = "$" + yearlyNet.toLocaleString();
+        document.getElementById("monthlyNet").innerText = "$" + (yearlyNet / 12).toLocaleString(undefined, {maximumFractionDigits: 0});
+        document.getElementById("weeklyNet").innerText = "$" + (yearlyNet / 52).toLocaleString(undefined, {maximumFractionDigits: 0});
+        
+        document.getElementById("resultBlock").style.display = "block";
+    }
 }
 </script>
 
