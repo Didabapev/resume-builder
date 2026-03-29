@@ -1,52 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Cover Letter Generator</title>
-<style>
-body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
-input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
-button { padding: 10px 20px; cursor: pointer; }
-.output { white-space: pre-wrap; border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Cover Letter Generator | Professional Job Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: #0f172a; color: #f8fafc; }
+        
+        /* NAVBAR */
+        .navbar { background: #0f172a; padding: 15px 30px; border-bottom: 1px solid #334155; }
+        .nav-container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #fff; font-weight: 700; text-decoration: none; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; margin-left: 20px; font-size: 14px; }
+
+        .container { max-width: 900px; margin: 50px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+
+        .form-card { background: #1e293b; padding: 25px; border-radius: 16px; border: 1px solid #334155; height: fit-content; }
+        h1 { font-size: 22px; margin-bottom: 20px; color: #38bdf8; }
+        
+        label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 5px; text-transform: uppercase; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; outline: none; }
+        
+        button { width: 100%; background: #38bdf8; color: #0f172a; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #7dd3fc; }
+
+        /* PREVIEW AREA */
+        .preview-card { background: #fff; color: #1e293b; padding: 40px; border-radius: 8px; min-height: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 14px; line-height: 1.6; }
+        #letterOutput { white-space: pre-wrap; }
+        .copy-btn { margin-top: 15px; background: #10b981; color: #fff; }
+    </style>
 </head>
 <body>
 
-<h1>Free Cover Letter Generator</h1>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">ResumeTools</a>
+        <div class="nav-links">
+            <a href="index.html">Resume Builder</a>
+            <a href="resume-summary.html">Summary Generator</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </div>
+</nav>
 
-<input id="name" placeholder="Your Name">
-<input id="job" placeholder="Job Title">
-<input id="company" placeholder="Company Name">
-<textarea id="skills" placeholder="Your Skills"></textarea>
+<div class="container">
+    <div class="form-card">
+        <h1>Cover Letter Maker</h1>
+        
+        <label>Your Name</label>
+        <input id="userName" placeholder="John Doe">
+        
+        <label>Job Title</label>
+        <input id="jobTitle" placeholder="Project Manager">
+        
+        <label>Company Name</label>
+        <input id="company" placeholder="Google">
+        
+        <label>Top Skill / Achievement</label>
+        <textarea id="achievement" rows="3" placeholder="I increased sales by 20% in my previous role."></textarea>
 
-<button onclick="generateLetter()">Generate Cover Letter</button>
+        <button onclick="generateLetter()">Generate Letter ✨</button>
+        <button class="copy-btn" id="copyBtn" style="display:none;" onclick="copyLetter()">Copy to Clipboard</button>
+    </div>
 
-<div class="output" id="result"></div>
+    <div class="preview-card" id="letterPreview">
+        <div id="letterOutput">Fill the form to generate your professional cover letter...</div>
+    </div>
+</div>
 
 <script>
 function generateLetter() {
-    let name = document.getElementById("name").value;
-    let job = document.getElementById("job").value;
-    let company = document.getElementById("company").value;
-    let skills = document.getElementById("skills").value;
+    const name = document.getElementById("userName").value || "[Your Name]";
+    const job = document.getElementById("jobTitle").value || "[Job Title]";
+    const company = document.getElementById("company").value || "[Company Name]";
+    const achievement = document.getElementById("achievement").value || "[Your main achievement]";
 
-    let letter = `
+    const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    const text = `
+${name}
+${date}
+
+Hiring Manager
+${company}
+
+Subject: Application for ${job} Position
+
 Dear Hiring Manager,
 
-My name is ${name}, and I am applying for the ${job} position at ${company}.
+I am writing to express my strong interest in the ${job} position at ${company}. Having followed your company’s growth for some time, I am impressed by your commitment to innovation and excellence in the industry.
 
-With my experience in ${skills}, I believe I would be a valuable addition to your team.
+During my career, I have consistently delivered high-quality results. Specifically, ${achievement}. I am confident that my background and skills make me a perfect fit for this role.
 
-I am highly motivated, detail-oriented, and passionate about delivering quality results.
+I am eager to bring my dedication and professional expertise to the ${company} team. Thank you for your time and consideration. I look forward to the possibility of discussing how my experience can benefit your organization.
 
-Thank you for considering my application. I look forward to the opportunity to discuss how I can contribute to ${company}.
+Best regards,
 
-Sincerely,
 ${name}
-`;
+    `;
 
-    document.getElementById("result").innerText = letter;
+    document.getElementById("letterOutput").innerText = text;
+    document.getElementById("copyBtn").style.display = "block";
+}
+
+function copyLetter() {
+    const text = document.getElementById("letterOutput").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Cover Letter copied!");
+    });
 }
 </script>
 
