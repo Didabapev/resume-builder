@@ -1,40 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interview Question Generator</title>
-<style>
-body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
-input { width: 100%; margin-bottom: 10px; padding: 10px; }
-button { padding: 10px 20px; cursor: pointer; }
-.output { border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Prep Tool | Practice Questions | ResumeTools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: #f1f5f9; color: #1e293b; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        .container { max-width: 600px; width: 100%; background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); text-align: center; }
+        
+        h1 { font-size: 28px; color: #0f172a; margin-bottom: 10px; }
+        p.desc { color: #64748b; margin-bottom: 30px; font-size: 15px; }
+
+        input { 
+            width: 100%; padding: 14px; margin-bottom: 20px; border: 2px solid #e2e8f0; 
+            border-radius: 12px; outline: none; font-size: 16px; transition: 0.3s;
+        }
+        input:focus { border-color: #2563eb; }
+
+        button { 
+            width: 100%; background: #2563eb; color: #fff; border: none; padding: 16px; 
+            border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 16px;
+        }
+        button:hover { background: #1d4ed8; transform: scale(1.02); }
+
+        .question-card { 
+            margin-top: 30px; padding: 30px; background: #f8fafc; border-radius: 16px; 
+            border: 1px solid #e2e8f0; min-height: 120px; display: none; 
+            align-items: center; justify-content: center; animation: fadeIn 0.5s ease;
+        }
+        #result { font-size: 18px; font-weight: 600; color: #0f172a; line-height: 1.5; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tips { margin-top: 40px; text-align: left; font-size: 14px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+        .back-link { margin-top: 25px; color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600; }
+    </style>
 </head>
 <body>
 
-<h1>Interview Question Generator</h1>
+<div class="container">
+    <h1>Interview Prep</h1>
+    <p class="desc">Practice the most common interview questions for your role.</p>
 
-<input id="job" placeholder="Job Title">
+    <input id="job" placeholder="Enter Job Title (e.g. Designer)">
 
-<button onclick="generateQuestion()">Generate Question</button>
+    <button onclick="generateQuestion()">Get Random Question 🎲</button>
 
-<div class="output" id="result"></div>
+    <div class="question-card" id="qCard">
+        <p id="result"></p>
+    </div>
+
+    <div class="tips">
+        <strong>Pro Tip:</strong> Use the STAR method (Situation, Task, Action, Result) to answer behavioral questions effectively.
+    </div>
+
+    <a href="index.html" class="back-link">← Return to Resume Builder</a>
+</div>
 
 <script>
 function generateQuestion() {
-    let job = document.getElementById("job").value;
-
+    let job = document.getElementById("job").value.trim() || "this position";
+    
     let questions = [
-        `Why do you want to work as a ${job}?`,
-        `What skills make you a strong ${job}?`,
-        `Describe a challenge you faced as a ${job}.`,
-        `How do you handle deadlines in a ${job} role?`,
-        `Why should we hire you as a ${job}?`
+        `Why do you want to work as a ${job} at our company?`,
+        `What is the most significant achievement in your career as a ${job}?`,
+        `How do you stay updated with the latest trends and tools in the ${job} industry?`,
+        `Describe a time you had a conflict with a colleague while working as a ${job}. How did you resolve it?`,
+        `What are your top 3 strengths that make you a great ${job}?`,
+        `Where do you see yourself in 5 years in your ${job} career?`,
+        `Tell me about a time you failed in a ${job} task. What did you learn?`,
+        `How do you prioritize your work when you have multiple ${job} deadlines?`
     ];
 
     let random = questions[Math.floor(Math.random() * questions.length)];
-    document.getElementById("result").innerHTML = random;
+    
+    const card = document.getElementById("qCard");
+    const text = document.getElementById("result");
+    
+    card.style.display = "flex";
+    text.innerText = random;
 }
 </script>
 
