@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /private/
 
 Sitemap: https://didabapev.github.io/resume-builder/sitemap.xml
 
