@@ -1,42 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resume Summary Generator</title>
-<style>
-body { font-family: Arial; padding: 40px; max-width: 800px; margin: auto; }
-input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
-button { padding: 10px 20px; cursor: pointer; }
-.output { white-space: pre-wrap; border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Resume Summary Generator | ResumeTools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: #f8fafc; color: #1e293b; padding: 40px 20px; line-height: 1.6; }
+        
+        .container { max-width: 650px; margin: auto; background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        
+        h1 { font-size: 28px; margin-bottom: 10px; color: #0f172a; text-align: center; }
+        p.subtitle { text-align: center; color: #64748b; margin-bottom: 30px; }
+
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        input, textarea { 
+            width: 100%; margin-bottom: 20px; padding: 12px; 
+            border: 1px solid #e2e8f0; border-radius: 8px; outline: none; 
+            font-size: 15px; transition: 0.2s;
+        }
+        input:focus, textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
+        button { 
+            width: 100%; background: #0f172a; color: #fff; border: none; 
+            padding: 14px; border-radius: 8px; font-weight: 600; 
+            cursor: pointer; transition: 0.3s; font-size: 16px;
+        }
+        button:hover { background: #1e293b; transform: translateY(-1px); }
+
+        .output-container { 
+            margin-top: 30px; display: none; 
+            background: #f1f5f9; padding: 20px; border-radius: 12px; 
+            border: 1px dashed #cbd5e1; position: relative;
+        }
+        .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .output-header span { font-size: 12px; font-weight: bold; text-transform: uppercase; color: #64748b; }
+        
+        .copy-btn { 
+            background: #2563eb; color: #fff; border: none; padding: 5px 10px; 
+            border-radius: 4px; font-size: 12px; cursor: pointer; 
+        }
+        
+        #result { white-space: pre-wrap; font-size: 15px; color: #334155; }
+
+        .back-link { display: block; text-align: center; margin-top: 25px; color: #64748b; text-decoration: none; font-size: 14px; }
+        .back-link:hover { color: #0f172a; }
+    </style>
 </head>
 <body>
 
-<h1>Free Resume Summary Generator</h1>
+<div class="container">
+    <h1>Summary Generator</h1>
+    <p class="subtitle">Create a professional profile intro in seconds.</p>
 
-<input id="job" placeholder="Job Title">
-<input id="experience" placeholder="Years of Experience">
-<textarea id="skills" placeholder="Key Skills"></textarea>
+    <label for="job">Job Title</label>
+    <input id="job" placeholder="e.g. Software Engineer">
 
-<button onclick="generateSummary()">Generate Summary</button>
+    <label for="experience">Years of Experience</label>
+    <input id="experience" type="number" placeholder="e.g. 5">
 
-<div class="output" id="result"></div>
+    <label for="skills">Key Skills (comma separated)</label>
+    <textarea id="skills" rows="3" placeholder="e.g. React, Node.js, Project Management"></textarea>
+
+    <button onclick="generateSummary()">Generate Summary ✨</button>
+
+    <div class="output-container" id="outputWrapper">
+        <div class="output-header">
+            <span>Your Professional Summary</span>
+            <button class="copy-btn" onclick="copyResult()">Copy Text</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <a href="index.html" class="back-link">← Return to Resume Builder</a>
+</div>
 
 <script>
 function generateSummary() {
-    let job = document.getElementById("job").value;
-    let experience = document.getElementById("experience").value;
-    let skills = document.getElementById("skills").value;
+    let job = document.getElementById("job").value.trim() || "[Job Title]";
+    let experience = document.getElementById("experience").value.trim() || "0";
+    let skills = document.getElementById("skills").value.trim() || "[Key Skills]";
 
-    let summary = `
-Professional ${job} with over ${experience} years of experience.
-Skilled in ${skills}.
-Results-driven, detail-oriented, and committed to delivering high-quality performance.
-Seeking to contribute expertise and grow within a dynamic organization.
-`;
+    let summary = `Results-driven ${job} with over ${experience} years of professional experience. Expert in ${skills}. Proven track record of delivering high-quality results and contributing to team success in fast-paced environments. Dedicated to professional growth and excellence.`;
 
     document.getElementById("result").innerText = summary;
+    document.getElementById("outputWrapper").style.display = "block";
+}
+
+function copyResult() {
+    const text = document.getElementById("result").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Summary copied to clipboard!");
+    });
 }
 </script>
 
