@@ -1,321 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Resume Builder – Professional CV Generator Online</title>
+    <meta name="description" content="Create a professional resume online and download it as PDF instantly. 100% free resume builder with modern ATS-friendly templates.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-<title>Free Resume Builder – Professional CV Generator Online</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg,#0f172a,#1e293b); color: #111; min-height: 100vh; }
 
-<meta name="description" content="Create a professional resume online and download it as PDF instantly. 100% free resume builder with modern ATS-friendly templates. No registration required.">
-<meta name="keywords" content="resume builder, free resume builder, CV generator, resume PDF download, ATS resume maker, online resume creator">
-<meta name="robots" content="index, follow">
-<meta name="author" content="ResumeTools">
+        /* NAVIGATION */
+        .navbar { background: #0f172a; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #334155; }
+        .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #fff; font-weight: 700; text-decoration: none; font-size: 18px; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; margin-left: 20px; font-size: 14px; transition: .3s; }
+        .nav-links a:hover { color: #fff; }
 
-<link rel="canonical" href="https://didabapev.github.io/resume-builder/">
+        header { text-align: center; padding: 50px 20px; color: #fff; }
+        header h1 { font-size: 36px; margin-bottom: 10px; }
 
-<!-- Open Graph -->
-<meta property="og:title" content="Free Resume Builder – Create Resume PDF Online">
-<meta property="og:description" content="Build a professional resume and download PDF instantly. 100% free and ATS-friendly.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://didabapev.github.io/resume-builder/">
+        .container { max-width: 1200px; margin: auto; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+        }
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Resume Builder">
-<meta name="twitter:description" content="Create and download resume PDF instantly. Free online CV maker.">
+        .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); height: fit-content; }
+        
+        h2 { margin-bottom: 15px; font-size: 20px; color: #1e293b; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 14px; }
+        input:focus, textarea:focus { border-color: #2563eb; }
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        button { background: #0f172a; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: .3s; font-size: 14px; }
+        button:hover { background: #1e293b; transform: translateY(-2px); }
+        .btn-template { background: #e2e8f0; color: #1e293b; }
+        .btn-template.active { background: #2563eb; color: #fff; }
+        .btn-download { background: #10b981; width: 100%; font-weight: bold; margin-top: 10px; }
 
-<!-- Schema.org -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "ResumeTools - Free Resume Builder",
-  "url": "https://didabapev.github.io/resume-builder/",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "All",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
+        /* RESUME PREVIEW AREA */
+        #resume-preview {
+            background: #fff;
+            padding: 40px;
+            min-height: 842px; /* A4 Ratio */
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
+        #rName { font-size: 28px; font-weight: 700; color: #0f172a; }
+        #rTitle { font-size: 18px; color: #64748b; margin-bottom: 20px; }
+        
+        .resume-section { margin-top: 20px; }
+        .resume-section h3 { 
+            font-size: 16px; 
+            text-transform: uppercase; 
+            border-bottom: 2px solid #e2e8f0; 
+            padding-bottom: 5px; 
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        .resume-content { font-size: 14px; line-height: 1.6; white-space: pre-line; color: #334155; }
 
-body{
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:#111;
-}
+        /* TEMPLATES */
+        .modern #resume-preview { border-top: 10px solid #2563eb; }
+        .minimal #resume-preview { font-family: 'Georgia', serif; }
+        .premium #resume-preview { background: #1a1a1a; color: #eee; }
+        .premium #rName, .premium .resume-section h3 { color: #fff; border-color: #444; }
+        .premium .resume-content { color: #ccc; }
 
-/* NAVBAR */
-.navbar{
-  background:#0f172a;
-  padding:15px 30px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+        /* PRINT STYLES */
+        @media print {
+            body { background: none; }
+            .navbar, header, .card:not(#resume-preview), footer, .btn-group { display: none !important; }
+            #resume-preview { margin: 0; box-shadow: none; width: 100%; }
+        }
 
-.nav-container{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  color:#fff;
-  font-weight:700;
-  text-decoration:none;
-  font-size:18px;
-}
-
-.nav-links a{
-  color:#cbd5e1;
-  text-decoration:none;
-  margin-left:20px;
-  font-size:14px;
-  transition:.3s;
-}
-
-.nav-links a:hover{
-  color:#fff;
-}
-
-header{
-  text-align:center;
-  padding:70px 20px;
-  color:#fff;
-}
-
-header h1{font-size:42px;margin-bottom:10px}
-header p{opacity:.85;font-size:18px}
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:30px;
-}
-
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:25px;
-  margin-bottom:25px;
-  box-shadow:0 20px 50px rgba(0,0,0,.2);
-}
-
-input,textarea{
-  width:100%;
-  padding:12px;
-  margin-bottom:12px;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-
-button{
-  background:#0f172a;
-  color:#fff;
-  border:none;
-  padding:12px 18px;
-  border-radius:8px;
-  cursor:pointer;
-  transition:.3s;
-  margin-right:8px;
-}
-
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 25px rgba(0,0,0,.3);
-}
-
-#resume{
-  background:#fff;
-  padding:35px;
-  margin-top:20px;
-  transition:.3s;
-}
-
-#resume h1{font-size:28px}
-#resume h2{
-  font-size:18px;
-  margin-top:18px;
-  border-bottom:1px solid #000;
-}
-#resume p{
-  font-size:14px;
-  line-height:1.6;
-}
-
-.modern{border-left:6px solid #2563eb}
-.minimal{font-family:Arial}
-.premium{
-  background:#111;
-  color:#fff;
-}
-.premium h2{
-  border-bottom:1px solid #fff;
-}
-
-.seo{
-  font-size:15px;
-  line-height:1.7;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:#ddd;
-  font-size:13px;
-}
-</style>
+        footer { text-align: center; padding: 40px; color: #cbd5e1; font-size: 13px; }
+    </style>
 </head>
-
-<body>
+<body class="modern">
 
 <nav class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo">ResumeTools</a>
-    <div class="nav-links">
-      <a href="cover-letter.html">Cover Letter</a>
-      <a href="resume-summary.html">Summary Generator</a>
-      <a href="salary-calculator.html">Salary Calculator</a>
-      <a href="interview-generator.html">Interview Questions</a>
-      <a href="blog.html">Blog</a>
-   </div>
-  </div>
+    <div class="nav-container">
+        <a href="index.html" class="logo">ResumeTools</a>
+        <div class="nav-links">
+            <a href="#">Cover Letter</a>
+            <a href="#">Summary Generator</a>
+            <a href="#">Blog</a>
+        </div>
+    </div>
 </nav>
 
 <header>
-<h1>Professional Resume Builder</h1>
-<p>Create, customize & download resume PDF instantly</p>
+    <h1>Professional Resume Builder</h1>
+    <p>Build your resume in real-time. Fast, free, and ATS-friendly.</p>
 </header>
 
 <div class="container">
+    <div class="card">
+        <h2>Personal Details</h2>
+        <input id="name" placeholder="Full Name">
+        <input id="title" placeholder="Job Title (e.g. Software Engineer)">
+        
+        <h2>Summary</h2>
+        <textarea id="summary" rows="3" placeholder="Briefly describe your career..."></textarea>
+        <button onclick="generateAISummary()">✨ AI Auto-fill</button>
 
-<div class="card">
-<h2>Create Your Resume</h2>
+        <h2 style="margin-top:20px">Experience</h2>
+        <textarea id="experience" rows="5" placeholder="Company Name - Role&#10;Date - Date&#10;• Responsibility 1&#10;• Responsibility 2"></textarea>
 
-<input id="name" placeholder="Full Name">
-<input id="title" placeholder="Job Title">
-<textarea id="summary" placeholder="Professional Summary"></textarea>
-<button type="button" onclick="generateSummary()">✨ Generate Summary</button>
+        <h2>Skills</h2>
+        <textarea id="skills" rows="3" placeholder="JavaScript, Python, Project Management..."></textarea>
 
-<textarea id="experience" placeholder="Work Experience"></textarea>
-<textarea id="skills" placeholder="Skills"></textarea>
+        <h2>Choose Template</h2>
+        <div class="btn-group">
+            <button class="btn-template" onclick="setTemplate('classic', this)">Classic</button>
+            <button class="btn-template active" onclick="setTemplate('modern', this)">Modern</button>
+            <button class="btn-template" onclick="setTemplate('minimal', this)">Minimal</button>
+            <button class="btn-template" onclick="setTemplate('premium', this)">Premium</button>
+        </div>
 
-<div style="margin-top:15px">
-  <button type="button" onclick="setTemplate('classic')">Classic</button>
-  <button type="button" onclick="setTemplate('modern')">Modern</button>
-  <button type="button" onclick="setTemplate('minimal')">Minimal</button>
-  <button type="button" onclick="setTemplate('premium')">Premium</button>
-</div>
+        <button class="btn-download" onclick="downloadPDF()">Download PDF</button>
+    </div>
 
-<br><br>
-<button onclick="generate()">Generate Resume</button>
-<button onclick="downloadPDF(this)">Download PDF</button>
-</div>
+    <div id="resume-preview">
+        <h1 id="rName">Your Name</h1>
+        <p id="rTitle">Job Title</p>
 
-<div class="card classic" id="resume">
-<h1 id="rName">Your Name</h1>
-<p id="rTitle">Job Title</p>
+        <div class="resume-section">
+            <h3>Summary</h3>
+            <div id="rSummary" class="resume-content">Professional summary will appear here...</div>
+        </div>
 
-<h2>Summary</h2>
-<p id="rSummary"></p>
+        <div class="resume-section">
+            <h3>Work Experience</h3>
+            <div id="rExperience" class="resume-content">Describe your work history...</div>
+        </div>
 
-<h2>Experience</h2>
-<p id="rExperience"></p>
-
-<h2>Skills</h2>
-<p id="rSkills"></p>
-
-<p style="margin-top:25px;font-size:11px;text-align:center;opacity:.6">
-Generated with ResumeTools
-</p>
-</div>
-
-<div class="card seo">
-<h2>Free Online Resume Builder</h2>
-<p>
-Our free resume builder helps job seekers create professional,
-ATS-friendly resumes in minutes. Customize your experience,
-choose a template, and download your resume as a PDF instantly.
-No registration required.
-</p>
-</div>
-
+        <div class="resume-section">
+            <h3>Skills</h3>
+            <div id="rSkills" class="resume-content">List your core strengths...</div>
+        </div>
+        
+        <p style="margin-top:40px; font-size:10px; text-align:center; opacity:0.5; border-top: 1px dashed #eee; padding-top: 10px;">
+            Created with ResumeTools.io
+        </p>
+    </div>
 </div>
 
 <footer>
-© 2026 ResumeTools · 
-<a href="about.html" style="color:#ddd">About</a> ·
-<a href="contact.html" style="color:#ddd">Contact</a> ·
-<a href="privacy.html" style="color:#ddd">Privacy Policy</a> ·
-<a href="terms.html" style="color:#ddd">Terms</a>
+    © 2026 ResumeTools · <a href="#" style="color:#cbd5e1">Privacy Policy</a>
 </footer>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 <script>
-["name","title","summary","experience","skills"].forEach(id=>{
-  const el=document.getElementById(id);
-  el.value=localStorage.getItem(id)||"";
-  el.addEventListener("input",()=>localStorage.setItem(id,el.value));
-});
+    // 1. LIVE PREVIEW & LOCAL STORAGE
+    const fields = ["name", "title", "summary", "experience", "skills"];
 
-function generate(){
-  document.getElementById("rName").innerText =
-    document.getElementById("name").value || "Your Name";
-  document.getElementById("rTitle").innerText =
-    document.getElementById("title").value || "Job Title";
-  document.getElementById("rSummary").innerText =
-    document.getElementById("summary").value;
-  document.getElementById("rExperience").innerText =
-    document.getElementById("experience").value;
-  document.getElementById("rSkills").innerText =
-    document.getElementById("skills").value;
-}
+    fields.forEach(id => {
+        const inputEl = document.getElementById(id);
+        const displayEl = document.getElementById("r" + id.charAt(0).toUpperCase() + id.slice(1));
 
-function generateSummary(){
-  const job=document.getElementById("title").value;
-  if(!job)return alert("Enter job title first");
+        // Load saved data
+        const savedValue = localStorage.getItem(id);
+        if (savedValue) {
+            inputEl.value = savedValue;
+            displayEl.innerText = savedValue;
+        }
 
-  const text=`Experienced ${job} with strong problem-solving skills and proven ability to deliver results. Dedicated to professional growth and high-quality performance.`;
+        // Live Update on Input
+        inputEl.addEventListener("input", () => {
+            const val = inputEl.value;
+            localStorage.setItem(id, val);
+            
+            if (val.trim() === "") {
+                displayEl.innerText = id === 'name' ? 'Your Name' : '...';
+            } else {
+                displayEl.innerText = val;
+            }
+        });
+    });
 
-  document.getElementById("summary").value=text;
-  localStorage.setItem("summary",text);
-}
+    // 2. AI SUMMARY GENERATOR (SIMPLE)
+    function generateAISummary() {
+        const job = document.getElementById("title").value || "Professional";
+        const text = `Results-oriented ${job} with a strong track record of delivering high-quality work. Skilled in problem-solving and collaborating with cross-functional teams to achieve project goals.`;
+        
+        document.getElementById("summary").value = text;
+        document.getElementById("rSummary").innerText = text;
+        localStorage.setItem("summary", text);
+    }
 
-function setTemplate(type){
-  const resume=document.getElementById("resume");
-  resume.className="card "+type;
-}
+    // 3. TEMPLATE SWITCHER
+    function setTemplate(style, btn) {
+        document.body.className = style;
+        
+        // Update button UI
+        document.querySelectorAll('.btn-template').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
 
-function downloadPDF(btn){
-  btn.innerText="Generating...";
-  btn.disabled=true;
+    // 4. DOWNLOAD AS PDF
+    function downloadPDF() {
+        const element = document.getElementById('resume-preview');
+        const name = document.getElementById('name').value || 'resume';
+        
+        const opt = {
+            margin:       0,
+            filename:     `${name}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
 
-  const resume=document.getElementById("resume");
-
-  const opt={
-    margin:10,
-    filename:(document.getElementById("name").value||"resume")+".pdf",
-    html2canvas:{scale:2,backgroundColor:"#ffffff"},
-    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
-  };
-
-  html2pdf().set(opt).from(resume).save().then(()=>{
-    btn.innerText="Download PDF";
-    btn.disabled=false;
-  });
-}
+        html2pdf().set(opt).from(element).save();
+    }
 </script>
 
 </body>
