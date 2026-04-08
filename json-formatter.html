@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>JSON Formatter & Validator Online | Best Developer Tools 2026</title>
+    <meta name="description" content="Free online JSON formatter and validator. Beautify, minify, and fix your JSON code instantly. Secure, browser-based tool for developers in 2026.">
+    <meta name="keywords" content="json formatter, json validator, beautify json, online json editor, developer tools">
 
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-dark: #1e293b;
+            --accent-blue: #3b82f6;
+            --text-gray: #94a3b8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        /* Навигация в стиле твоего сайта */
+        nav {
+            padding: 20px;
+            text-align: center;
+            background: var(--card-dark);
+            border-bottom: 1px solid #334155;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        nav a:hover { color: var(--accent-blue); }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 36px; margin-bottom: 10px; }
+        .header p { color: var(--text-gray); font-size: 18px; }
+
+        /* Интерфейс инструмента */
+        .tool-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: var(--card-dark);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            color: #38bdf8; /* Голубой цвет для кода */
+            padding: 15px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+        }
+        .controls {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .btn-primary { background: var(--accent-blue); color: white; }
+        .btn-secondary { background: #475569; color: white; }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        /* SEO Тексты под инструментом */
+        .seo-content {
+            margin-top: 60px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .seo-content h2 { color: white; border-bottom: 2px solid var(--accent-blue); display: inline-block; padding-bottom: 5px; }
+        .seo-content p { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Resume Builder</a>
+    <a href="json-formatter.html" style="color: var(--accent-blue); font-weight: bold;">JSON Formatter</a>
+    <a href="blog.html">Blog</a>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>JSON Formatter & Validator</h1>
+        <p>Clean, beautify, and debug your JSON data in real-time.</p>
+    </div>
+
+    <div class="tool-box">
+        <textarea id="jsonInput" placeholder="Paste your messy JSON code here..."></textarea>
+        <textarea id="jsonOutput" placeholder="Formatted result will appear here..." readonly></textarea>
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="formatJSON()">Beautify ✨</button>
+            <button class="btn btn-secondary" onclick="minifyJSON()">Minify ⚡</button>
+            <button class="btn btn-secondary" onclick="clearFields()">Clear</button>
+        </div>
+    </div>
+
+    <div class="seo-content">
+        <h2>Why You Need a JSON Formatter in 2026</h2>
+        <p>
+            In the modern web development era of 2026, <strong>JSON (JavaScript Object Notation)</strong> remains the primary format for data exchange. However, APIs often return minified data to save bandwidth, making it nearly impossible for humans to read. Our <strong>online JSON Formatter</strong> helps you transform messy code into a beautiful, readable structure instantly.
+        </p>
+
+        <h2>Key Benefits of Our Validator:</h2>
+        <ul>
+            <li><strong>Instant Beautification:</strong> Convert compact JSON strings into a clear hierarchy with 4-space indentation.</li>
+            <li><strong>Syntax Validation:</strong> Our tool automatically detects missing commas, brackets, or incorrect quotes.</li>
+            <li><strong>Browser-Side Security:</strong> Your data never leaves your computer. All processing is done locally via JavaScript for maximum privacy.</li>
+            <li><strong>Minification:</strong> Compress your JSON data to its smallest size for efficient API requests.</li>
+        </ul>
+
+        <h2>How to Use This Tool</h2>
+        <p>
+            Simply paste your raw JSON string into the left editor and click <strong>"Beautify"</strong>. If your code is valid, the structured version will appear in the right box. If there's an error, our validator will highlight exactly what's wrong with your syntax.
+        </p>
+    </div>
+</div>
+
+<script>
+    function formatJSON() {
+        const input = document.getElementById('jsonInput').value;
+        const output = document.getElementById('jsonOutput');
+        try {
+            if(!input.trim()) return;
+            const parsed = JSON.parse(input);
+            output.value = JSON.stringify(parsed, null, 4);
+            output.style.color = "#38bdf8";
+        } catch (e) {
+            output.value = "❌ Invalid JSON: " + e.message;
+            output.style.color = "#f87171";
+        }
+    }
+
+    function minifyJSON() {
+        const input = document.getElementById('jsonInput').value;
+        const output = document.getElementById('jsonOutput');
+        try {
+            if(!input.trim()) return;
+            const parsed = JSON.parse(input);
+            output.value = JSON.stringify(parsed);
+            output.style.color = "#38bdf8";
+        } catch (e) {
+            output.value = "❌ Error minifying JSON: " + e.message;
+            output.style.color = "#f87171";
+        }
+    }
+
+    function clearFields() {
+        document.getElementById('jsonInput').value = "";
+        document.getElementById('jsonOutput').value = "";
+    }
+</script>
+
+</body>
+</html>
