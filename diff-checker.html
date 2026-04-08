@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Diff Checker | Compare Text & Code Instantly</title>
+    <meta name="description" content="Free online tool to compare two text documents or code snippets. Spot differences instantly with highlighted changes. Secure and fast.">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-dark: #1e293b;
+            --accent-blue: #3b82f6;
+            --diff-del: #7f1d1d;
+            --diff-ins: #064e3b;
+            --text-gray: #94a3b8;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; margin: 0; }
+        nav { padding: 20px; text-align: center; background: var(--card-dark); border-bottom: 1px solid #334155; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; }
+        
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        textarea {
+            width: 100%; height: 300px; background: #0f172a; border: 1px solid #475569;
+            border-radius: 8px; color: #94a3b8; padding: 15px; font-family: monospace;
+        }
+        .btn-container { text-align: center; margin: 30px 0; }
+        .btn { padding: 12px 40px; border-radius: 8px; border: none; background: var(--accent-blue); color: white; font-weight: bold; cursor: pointer; }
+        
+        #result {
+            background: var(--card-dark); padding: 20px; border-radius: 8px;
+            white-space: pre-wrap; font-family: monospace; border: 1px solid #334155; line-height: 1.6;
+        }
+        .del { background: var(--diff-del); text-decoration: line-through; padding: 2px 4px; border-radius: 3px; }
+        .ins { background: var(--diff-ins); padding: 2px 4px; border-radius: 3px; }
+        
+        .seo-text { margin-top: 60px; color: var(--text-gray); line-height: 1.8; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="diff-checker.html" style="color: var(--accent-blue);">Diff Checker</a>
+</nav>
+
+<div class="container">
+    <h1>Text Diff Checker</h1>
+    <p style="color: var(--text-gray);">Compare two versions of text or code to see what has changed.</p>
+
+    <div class="grid">
+        <div>
+            <label>Original Text</label>
+            <textarea id="text1" placeholder="Paste original text here..."></textarea>
+        </div>
+        <div>
+            <label>Changed Text</label>
+            <textarea id="text2" placeholder="Paste modified text here..."></textarea>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn" onclick="checkDiff()">Find Differences ✨</button>
+    </div>
+
+    <div id="result" placeholder="Differences will be highlighted here..."></div>
+
+    <div class="seo-text">
+        <h2>How does the Diff Checker work?</h2>
+        <p>
+            In software development and content creation, tracking changes is vital. Our <strong>Online Diff Checker</strong> uses a simple algorithm to compare strings and highlight insertions and deletions. This is especially useful for developers checking code logic or editors reviewing article drafts.
+        </p>
+        <p>
+            Like our <strong>JSON Formatter</strong> and <strong>Salary Calculator</strong>, this tool is 100% private. All comparisons happen locally in your browser—no data is uploaded to any server.
+        </p>
+    </div>
+</div>
+
+<script>
+    function checkDiff() {
+        const t1 = document.getElementById('text1').value.split(' ');
+        const t2 = document.getElementById('text2').value.split(' ');
+        const result = document.getElementById('result');
+        result.innerHTML = '';
+
+        // Простая логика сравнения слов
+        t1.forEach((word, i) => {
+            if (t2.includes(word)) {
+                result.innerHTML += word + ' ';
+            } else {
+                result.innerHTML += `<span class="del">${word}</span> `;
+            }
+        });
+
+        t2.forEach((word) => {
+            if (!t1.includes(word)) {
+                result.innerHTML += `<span class="ins">${word}</span> `;
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
